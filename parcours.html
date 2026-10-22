@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parcours – Nissi Rich OVOUNDARD</title>
+  <meta name="description" content="Le parcours de Nissi Rich OVOUNDARD, développeur full stack en formation : formation, compétences et centres d'intérêt.">
+  <meta name="theme-color" content="#0e0c0a">
+
+  <!-- Polices : Fraunces (titres), Manrope (texte), JetBrains Mono (détails "code") -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Styles propres à cette page -->
+  <link rel="stylesheet" href="css/parcours.css">
+  <!-- defer : le script attend que la page soit construite avant de s'exécuter -->
+  <script src="js/main.js" defer></script>
+  <!-- Effets propres à cette page -->
+  <script src="js/parcours.js" defer></script>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="site-nav">
+    <div class="container nav-inner">
+
+      <!-- Logo : chaque lettre a son propre délai (--i) pour l'effet de roulement -->
+      <a href="index.html" class="logo" aria-label="Nissi Rich OVOUNDARD, accueil">
+        <span class="logo-mark" aria-hidden="true">N</span>
+        <span class="logo-text" aria-hidden="true">
+          <span style="--i: 0">N</span><span style="--i: 1">i</span><span style="--i: 2">s</span><span style="--i: 3">s</span><span style="--i: 4">i</span><span style="--i: 5">&nbsp;</span><span style="--i: 6">R</span><span style="--i: 7">i</span><span style="--i: 8">c</span><span style="--i: 9">h</span>
+        </span>
+      </a>
+
+      <!-- Liens : ici, c'est "Parcours" qui est la page en cours -->
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="index.html" class="nav-link">
+          <span class="nav-num">01</span>
+          <span class="nav-label"><span>Accueil</span></span>
+        </a>
+        <a href="projets.html" class="nav-link">
+          <span class="nav-num">02</span>
+          <span class="nav-label"><span>Projets</span></span>
+        </a>
+        <a href="parcours.html" class="nav-link" aria-current="page">
+          <span class="nav-num">03</span>
+          <span class="nav-label"><span>Parcours</span></span>
+        </a>
+        <a href="contact.html" class="nav-link">
+          <span class="nav-num">04</span>
+          <span class="nav-label"><span>Contact</span></span>
+        </a>
+      </nav>
+
+      <!-- Badge de disponibilité -->
+      <a href="contact.html" class="status-badge">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span class="status-text">Alternance · rentrée 2027</span>
+      </a>
+
+      <!-- Bouton du menu sur téléphone (affiché seulement avec JavaScript) -->
+      <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ===== MENU MOBILE ===== -->
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <nav aria-label="Menu mobile">
+      <ul class="mobile-links">
+        <li style="--i: 0"><a href="index.html"><span>01</span>Accueil</a></li>
+        <li style="--i: 1"><a href="projets.html"><span>02</span>Projets</a></li>
+        <li style="--i: 2"><a href="parcours.html" aria-current="page"><span>03</span>Parcours</a></li>
+        <li style="--i: 3"><a href="contact.html"><span>04</span>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-foot">
+      <p>Alternance · rentrée 2027</p>
+      <a href="https://github.com/r-ovoundard" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+
+  <main id="haut">
+
+    <!-- ===== EN-TÊTE ===== -->
+    <section class="page-head container">
+      <p class="section-num">(Histoire) — Parcours</p>
+
+      <h1 class="page-title" aria-label="Parcours">
+        <span aria-hidden="true">
+          <span class="flip" style="--i: 0">P</span><span class="flip" style="--i: 1">a</span><span class="flip" style="--i: 2">r</span><span class="flip" style="--i: 3">c</span><span class="flip" style="--i: 4">o</span><span class="flip" style="--i: 5">u</span><span class="flip" style="--i: 6">r</span><span class="flip" style="--i: 7">s</span>
+        </span>
+      </h1>
+
+      <p class="page-intro">
+        Des sciences au lycée à l'informatique, jusqu'au développement web en France :
+        le chemin, les outils, et ce qui me fait avancer.
+      </p>
+
+      <div class="page-rule" aria-hidden="true"></div>
+    </section>
+
+    <!-- ===== MANIFESTE ===== -->
+    <section class="manifesto container" aria-labelledby="manifesto-title">
+      <h2 class="sr-only" id="manifesto-title">Pourquoi le développement</h2>
+
+      <span class="manifesto-mark" aria-hidden="true">“</span>
+
+      <!-- Le JS découpe ce texte en mots, qui s'allument au défilement -->
+      <p class="manifesto-text" data-words>
+        J'aime programmer, et j'aime le web. Savoir que des personnes peuvent accorder leur confiance
+        à un site ou à une application web que j'ai construits de mes mains me rend fier, et me fait admirer
+        chaque jour les technologies que j'utilise. Et au-delà de tout ça, il y a l'informatique elle-même :
+        un domaine que je trouve tout simplement extraordinaire.
+      </p>
+
+      <div class="manifesto-side" data-reveal>
+        <p class="manifesto-sub">
+          J'aime toutes les étapes d'une application, mais j'ai un vrai penchant pour le <strong>design</strong> :
+          je peux passer des heures sur une interface sans m'en lasser une seconde. La <strong>logique serveur</strong>
+          compte tout autant : c'est elle qui rend une application fiable, rapide et sérieuse.
+          Concevoir les deux, de l'écran jusqu'à la base de données, c'est ce qui me plaît le plus.
+        </p>
+
+        <!-- Les affinités : 5 losanges, --n = nombre de losanges pleins -->
+        <ul class="affinity">
+          <li style="--n: 5">
+            <span class="affinity-name">Interface</span>
+            <span class="affinity-scale" aria-label="5 sur 5"><i></i><i></i><i></i><i></i><i></i></span>
+          </li>
+          <li style="--n: 4">
+            <span class="affinity-name">Logique</span>
+            <span class="affinity-scale" aria-label="4 sur 5"><i></i><i></i><i></i><i></i><i></i></span>
+          </li>
+          <li style="--n: 4">
+            <span class="affinity-name">Serveur</span>
+            <span class="affinity-scale" aria-label="4 sur 5"><i></i><i></i><i></i><i></i><i></i></span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== FRISE ===== -->
+    <section class="journey container" aria-labelledby="journey-title">
+
+      <header class="section-head" data-reveal="mask">
+        <p class="section-num">(01) — Frise</p>
+        <h2 class="section-title" id="journey-title">Mon <em>chemin</em></h2>
+        <p class="section-sub">De la plus récente à la plus ancienne, les étapes qui m'ont mené ici.</p>
+      </header>
+
+      <!-- --fill (de 0 à 1) est mis à jour par le JS : le trait de braise se remplit -->
+      <ol class="timeline">
+
+        <li class="tl-item is-current" data-reveal>
+          <span class="tl-dot" aria-hidden="true"></span>
+          <p class="tl-date">2026 — 2028</p>
+          <div class="tl-card">
+            <p class="tl-kicker">Formation · en cours</p>
+            <h3 class="tl-title">Bachelor Conception et développement full stack</h3>
+            <p class="tl-place">Bac+3 en deux ans · F2I, Vincennes</p>
+            <p class="tl-text">
+              Arrivé en France en 2026 pour me spécialiser dans le développement web : HTML, CSS,
+              JavaScript, PHP, MySQL, Git et travail en équipe sur des projets concrets.
+            </p>
+            <ul class="tl-tags">
+              <li>Full stack</li><li>Git</li><li>Travail en équipe</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="tl-item" data-reveal>
+          <span class="tl-dot" aria-hidden="true"></span>
+          <p class="tl-date">2025</p>
+          <div class="tl-card">
+            <p class="tl-kicker">Projet personnel</p>
+            <h3 class="tl-title">PromoCongo</h3>
+            <p class="tl-place">Brazzaville · réalisé seul</p>
+            <p class="tl-text">
+              Conception et développement d'une plateforme de liquidation de stocks de produits alimentaires,
+              pour aider à écouler les marchandises au lieu de les perdre. C'est ce projet qui m'a donné envie
+              de faire du développement web mon métier.
+            </p>
+            <ul class="tl-tags">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>MySQL</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="tl-item" data-reveal>
+          <span class="tl-dot" aria-hidden="true"></span>
+          <p class="tl-date">2022 — 2025</p>
+          <div class="tl-card">
+            <p class="tl-kicker">Études supérieures</p>
+            <h3 class="tl-title">Conception et développement informatique</h3>
+            <p class="tl-place">Trois années d'université · Congo-Brazzaville</p>
+            <p class="tl-text">
+              Mes premières années en informatique : les bases de la programmation et de la conception
+              d'applications, avant de choisir de me spécialiser dans le développement web.
+            </p>
+            <ul class="tl-tags">
+              <li>Programmation</li><li>Conception</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="tl-item" data-reveal>
+          <span class="tl-dot" aria-hidden="true"></span>
+          <p class="tl-date">2019 — 2022</p>
+          <div class="tl-card">
+            <p class="tl-kicker">Lycée</p>
+            <h3 class="tl-title">Baccalauréat série D</h3>
+            <p class="tl-place">Sciences naturelles · Congo-Brazzaville</p>
+            <p class="tl-text">
+              Trois années orientées vers les sciences, de la seconde jusqu'à l'obtention du bac :
+              une base de rigueur et de logique que je retrouve aujourd'hui dans le code.
+            </p>
+          </div>
+        </li>
+
+      </ol>
+    </section>
+
+    <!-- ===== BOÎTE À OUTILS ===== -->
+    <section class="toolbox container" aria-labelledby="toolbox-title">
+
+      <header class="section-head" data-reveal="mask">
+        <p class="section-num">(02) — Boîte à outils</p>
+        <h2 class="section-title" id="toolbox-title">Ce que j'<em>apprends</em></h2>
+        <p class="section-sub">
+          J'apprends chaque jour : ici, j'ai découvert des pratiques et des outils que je n'utilisais pas avant,
+          et je les adopte un à un.
+        </p>
+      </header>
+
+      <!-- --lvl : de 4 (bases solides) à 1 (je découvre) -->
+      <div class="levels" data-reveal-group>
+        <article class="level" style="--lvl: 4" data-reveal>
+          <div class="level-head">
+            <h3>Mes bases solides</h3>
+            <span class="gauge" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          </div>
+          <ul class="chips-list">
+            <li>HTML</li><li>CSS</li>
+          </ul>
+        </article>
+
+        <article class="level" style="--lvl: 3" data-reveal>
+          <div class="level-head">
+            <h3>Je consolide</h3>
+            <span class="gauge" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          </div>
+          <ul class="chips-list">
+            <li>JavaScript</li>
+          </ul>
+        </article>
+
+        <article class="level" style="--lvl: 2" data-reveal>
+          <div class="level-head">
+            <h3>Je progresse</h3>
+            <span class="gauge" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          </div>
+          <ul class="chips-list">
+            <li>PHP</li><li>MySQL</li><li>Algorithmique</li>
+          </ul>
+        </article>
+
+        <article class="level" style="--lvl: 1" data-reveal>
+          <div class="level-head">
+            <h3>Je découvre</h3>
+            <span class="gauge" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          </div>
+          <ul class="chips-list">
+            <li>Git</li><li>GitHub</li><li>Node.js</li><li>Tests automatisés</li><li>Responsive</li><li>Accessibilité</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== EN DEHORS DU CODE ===== -->
+    <section class="offcode container" aria-labelledby="offcode-title">
+
+      <header class="section-head" data-reveal="mask">
+        <p class="section-num">(03) — En dehors du code</p>
+        <h2 class="section-title" id="offcode-title">Et <em>sinon</em> ?</h2>
+      </header>
+
+      <div class="offcode-grid">
+
+        <!-- Langues -->
+        <div class="langs" data-reveal>
+          <h3 class="offcode-label">Langues</h3>
+          <ul>
+            <li class="lang">
+              <span class="lang-name">Français</span>
+              <span class="lang-level">Courant</span>
+              <span class="lang-bar" style="--v: 1" aria-hidden="true"></span>
+            </li>
+            <li class="lang is-goal">
+              <span class="lang-name">Anglais</span>
+              <span class="lang-level">Prochain objectif</span>
+              <span class="lang-bar" style="--v: 0" aria-hidden="true"></span>
+            </li>
+            <li class="lang is-goal">
+              <span class="lang-name">Chinois</span>
+              <span class="lang-level">Prochain objectif</span>
+              <span class="lang-bar" style="--v: 0" aria-hidden="true"></span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Centres d'intérêt -->
+        <div class="interests">
+          <h3 class="offcode-label" data-reveal>Centres d'intérêt</h3>
+          <ul class="interest-grid" data-reveal-group>
+            <li class="interest" data-reveal><span class="interest-icon" aria-hidden="true">🏀</span><strong>Sport</strong><span>Basket et football</span></li>
+            <li class="interest" data-reveal><span class="interest-icon" aria-hidden="true">🎮</span><strong>Jeux vidéo</strong></li>
+            <li class="interest" data-reveal><span class="interest-icon" aria-hidden="true">🎧</span><strong>Musique</strong></li>
+            <li class="interest" data-reveal><span class="interest-icon" aria-hidden="true">📚</span><strong>Lecture</strong></li>
+            <li class="interest" data-reveal><span class="interest-icon" aria-hidden="true">🍥</span><strong>Animés</strong></li>
+            <li class="interest" data-reveal><span class="interest-icon" aria-hidden="true">🎬</span><strong>Documentaires</strong><span>De toutes sortes</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Appel au contact (même bloc que l'accueil) -->
+      <a href="contact.html" class="cta" data-cursor="Écrire" data-reveal>
+        <span class="cta-kicker">La suite s'écrit avec vous</span>
+        <span class="cta-title">Parlons de <em>l'alternance</em></span>
+        <span class="cta-arrow" aria-hidden="true">→</span>
+      </a>
+
+    </section>
+
+  </main>
+
+  <!-- ===== PIED DE PAGE ===== -->
+  <footer class="site-footer">
+    <div class="container">
+
+      <div class="footer-top" data-reveal>
+        <div class="footer-intro">
+          <p class="footer-lead">Un projet, une question,<br>ou juste envie d'<em>échanger</em> ?</p>
+          <a href="contact.html" class="project-link">Écrivez-moi <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <nav class="footer-col" aria-label="Plan du site">
+          <h3>Navigation</h3>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="projets.html">Projets</a></li>
+            <li><a href="parcours.html">Parcours</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col">
+          <h3>Ailleurs</h3>
+          <ul>
+            <li><a href="https://github.com/r-ovoundard" target="_blank" rel="noopener">GitHub</a></li>
+            <!-- Quand tu auras un LinkedIn, ajoute une ligne comme celle-ci :
+            <li><a href="https://www.linkedin.com/in/TON-PROFIL" target="_blank" rel="noopener">LinkedIn</a></li>
+            -->
+          </ul>
+        </div>
+
+        <!-- Sur cette page, le haut s'appelle #haut (le #accueil est sur l'accueil) -->
+        <a href="#haut" class="to-top" aria-label="Revenir en haut de la page">
+          <span aria-hidden="true">↑</span>
+        </a>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Nissi Rich OVOUNDARD</p>
+        <p>Conçu et codé à la main · HTML, CSS &amp; JavaScript</p>
+      </div>
+
+    </div>
+
+    <!-- Le nom géant : une lettre par span, pour les faire surgir une par une -->
+    <p class="footer-giant" aria-hidden="true">
+      <span style="--i: 0">O</span><span style="--i: 1">v</span><span style="--i: 2">o</span><span style="--i: 3">u</span><span style="--i: 4">n</span><span style="--i: 5">d</span><span style="--i: 6">a</span><span style="--i: 7">r</span><span style="--i: 8">d</span>
+    </p>
+  </footer>
+
+</body>
+</html>
