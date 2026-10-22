@@ -877,3 +877,116 @@ body::before {
     gap: 16px 32px;
   }
 }
+/* =========================================================
+   COMPÉTENCES – DEUX BANDES QUI SE CROISENT
+   ========================================================= */
+/* Glisse d'exactement une liste : la copie prend la place de l'originale */
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+.skills {
+  position: relative;
+  padding: 90px 0;
+  overflow: hidden; /* coupe les bouts des bandes inclinées */
+}
+
+/* Une bande : un peu plus large que l'écran, pour que l'inclinaison
+   ne laisse pas voir ses extrémités */
+.marquee {
+  position: relative;
+  display: flex;
+  width: 110%;
+  margin-left: -5%;
+  padding-block: 18px;
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+/* Au survol, la bande s'arrête pour qu'on puisse lire */
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-group {
+  list-style: none;
+  display: flex;
+  flex-shrink: 0;
+}
+
+/* Chaque mot, suivi d'une étoile ✦ */
+.marquee-group li {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  padding-right: 36px; /* même espace partout, y compris au raccord */
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.marquee-group li::after {
+  content: "✦";
+  font-size: 0.55em;
+  font-style: normal;
+}
+
+/* =========================================================
+   COMPÉTENCES – BANDE DE BRAISE (techniques)
+   ========================================================= */
+.marquee-main {
+  z-index: 2;
+  background: var(--gradient);
+  box-shadow: 0 20px 60px rgba(255, 106, 43, 0.25); /* elle "éclaire" la page */
+  color: var(--bg);
+  transform: rotate(-3deg);
+}
+
+.marquee-main li {
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* =========================================================
+   COMPÉTENCES – BANDE SOMBRE (qualités)
+   ========================================================= */
+.marquee-alt {
+  z-index: 1;
+  margin-top: -34px; /* passe sous la bande de braise : effet X */
+  border-block: 1px solid var(--line);
+  background: var(--bg-soft);
+  transform: rotate(2deg);
+}
+
+.marquee-alt .marquee-track {
+  animation-duration: 40s;
+  animation-direction: reverse; /* défile dans l'autre sens */
+}
+
+/* Lettres évidées : seulement le contour */
+.marquee-alt li {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-strong);
+  font-family: var(--font-body);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: color 0.4s, -webkit-text-stroke-color 0.4s;
+}
+
+/* Au survol, le mot s'allume */
+.marquee-alt li:hover {
+  color: var(--amber);
+  -webkit-text-stroke-color: var(--amber);
+}
+
+.marquee-alt li::after {
+  color: var(--ember);
+  -webkit-text-stroke: 0;
+}
