@@ -121,17 +121,44 @@
     <section class="project-list container" aria-label="Liste des projets" data-reveal-group>
 
             <article class="row" data-category="fullstack" data-reveal data-preview="images/projets/monbudget.png">
-        <button type="button" class="row-head" aria-expanded="false">
+         <button type="button" class="row-head" aria-expanded="false" aria-controls="detail-monbudget">
           <span class="row-num">01</span>
-          <span class="row-title">MonBudget</span>
+          <span class="row-title" id="titre-monbudget">MonBudget</span>
           <span class="row-tags">HTML · CSS · JS · PHP · MySQL</span>
           <span class="row-year">2026</span>
           <span class="row-arrow" aria-hidden="true">↘</span>
         </button>
+                <div class="row-detail" id="detail-monbudget" role="region" aria-labelledby="titre-monbudget" inert>
+          <div class="row-detail-inner">
+            <dl class="case">
+              <div>
+                <dt>Contexte</dt>
+                <dd>Un projet personnel, né d'un besoin d'étudiant : savoir où part son argent chaque mois, et garder le contrôle de son budget.</dd>
+              </div>
+              <div>
+                <dt>Mon rôle</dt>
+                <dd>Tout, seul : maquette, interface, API en PHP, base de données MySQL, sécurité des comptes et publication sur GitHub.</dd>
+              </div>
+              <div>
+                <dt>Le défi</dt>
+                <dd>Transformer une première version qui gardait tout dans le navigateur en vraie application, avec un serveur, des comptes et des données séparées pour chaque utilisateur.</dd>
+              </div>
+              <div>
+                <dt>Ce que j'ai appris</dt>
+                <dd>Concevoir une API, protéger les mots de passe, se défendre contre les injections SQL avec des requêtes préparées, et versionner un projet avec Git.</dd>
+              </div>
+            </dl>
+            <div class="case-links">
+              <a href="https://github.com/r-ovoundard/mon-budget" target="_blank" rel="noopener" class="project-link">
+                Voir le code <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </article>
 
       <article class="row" data-category="algo" data-reveal>
-        <button type="button" class="row-head" aria-expanded="false">
+        <button type="button" class="row-head" aria-expanded="false" aria-controls="detail-monbudget">
           <span class="row-num">02</span>
           <span class="row-title">CinéMatch</span>
           <span class="row-tags">JavaScript · Algorithmique · Tests</span>

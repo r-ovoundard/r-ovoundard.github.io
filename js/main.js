@@ -386,6 +386,24 @@ function initPreview() {
   });
 }
 /* =========================================================
+   9. DÉTAIL DES PROJETS (tiroirs)
+   ========================================================= */
+function initRowDetails() {
+  document.querySelectorAll('.row').forEach((row) => {
+    const head = row.querySelector('.row-head');
+    const detail = row.querySelector('.row-detail');
+    if (!head || !detail) return; // projet sans tiroir : rien à faire
+
+    head.addEventListener('click', () => {
+      const isOpen = head.getAttribute('aria-expanded') === 'true';
+
+      head.setAttribute('aria-expanded', String(!isOpen)); // pour l'accessibilité
+      row.classList.toggle('is-open', !isOpen);            // pour le CSS
+      detail.inert = isOpen; // fermé = contenu ignoré au clavier
+    });
+  });
+}
+/* =========================================================
    DÉMARRAGE
    ========================================================= */
 initCursor();
@@ -396,3 +414,4 @@ initCounters();
 initMobileMenu();
 initFilters();
 initPreview();
+initRowDetails();

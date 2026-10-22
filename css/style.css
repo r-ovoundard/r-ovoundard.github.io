@@ -2445,3 +2445,100 @@ body.menu-open {
 .preview.has-image .preview-text {
   display: none;
 }
+/* =========================================================
+   PAGE PROJETS – LE TIROIR DE DÉTAIL
+   ========================================================= */
+/* Astuce : une grille qui passe de 0fr à 1fr anime la hauteur
+   jusqu'à la taille réelle du contenu */
+.row-detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.7s var(--ease-out);
+}
+
+.row.is-open .row-detail {
+  grid-template-rows: 1fr;
+}
+
+.row-detail-inner {
+  overflow: hidden;
+}
+
+/* Les 4 parties sur 2 colonnes, alignées sous le nom du projet */
+.case {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px 48px;
+  margin: 8px 0 0 88px;
+  padding-left: 28px;
+}
+
+/* Le trait de braise, qui se dessine de haut en bas */
+.case::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: var(--gradient);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.8s var(--ease-out) 0.2s;
+}
+
+.row.is-open .case::before {
+  transform: scaleY(1);
+}
+
+/* Chaque partie glisse depuis la gauche en sortant du flou */
+.case > div {
+  opacity: 0;
+  filter: blur(4px);
+  transform: translateX(-16px);
+  transition: opacity 0.6s, filter 0.6s, transform 0.7s var(--ease-out);
+}
+
+.row.is-open .case > div {
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+
+/* L'une après l'autre */
+.row.is-open .case > div:nth-child(1) { transition-delay: 0.20s; }
+.row.is-open .case > div:nth-child(2) { transition-delay: 0.28s; }
+.row.is-open .case > div:nth-child(3) { transition-delay: 0.36s; }
+.row.is-open .case > div:nth-child(4) { transition-delay: 0.44s; }
+
+.case dt {
+  margin-bottom: 6px;
+  color: var(--ember);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.case dd {
+  color: var(--muted);
+}
+
+.case-links {
+  margin: 28px 0 40px 116px;
+}
+
+/* La ligne ouverte garde son style "survolé" */
+.row.is-open .row-title {
+  color: var(--amber);
+  font-style: italic;
+  transform: translateX(16px);
+}
+
+.row.is-open .row-arrow {
+  border-color: transparent;
+  background: var(--ember);
+  color: var(--bg);
+  transform: rotate(180deg); /* ↘ devient ↖ */
+}
