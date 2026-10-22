@@ -2542,3 +2542,23 @@ body.menu-open {
   color: var(--bg);
   transform: rotate(180deg); /* ↘ devient ↖ */
 }
+/* =========================================================
+   NOM DE FAMILLE EN MAJUSCULES
+   ========================================================= */
+/* Héros : "Ovoundard" → "OVOUNDARD" */
+.hero-title .accent {
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+/* Pied de page : le nom géant.
+   En majuscules, les lettres sont plus larges :
+   on réduit la taille pour qu'il tienne toujours sur l'écran. */
+.footer-giant {
+  font-size: clamp(3rem, 13.5vw, 12rem);
+  letter-spacing: -0.03em;
+}
+
+.footer-giant span {
+  text-transform: uppercase;
+}
