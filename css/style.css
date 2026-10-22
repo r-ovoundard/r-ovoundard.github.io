@@ -2190,3 +2190,63 @@ body.menu-open {
   transform-origin: left;
   animation: lineGrow 1.4s var(--ease-out) 1.1s both;
 }
+/* =========================================================
+   PAGE PROJETS – FILTRES
+   ========================================================= */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+  animation: heroFade 0.9s var(--ease-out) 1.2s both;
+}
+
+.filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: none;
+  color: var(--muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s, border-color 0.3s, background 0.3s;
+}
+
+.filter:hover {
+  border-color: var(--amber);
+  color: var(--text);
+}
+
+/* Le petit point de braise, caché (taille 0) */
+.filter::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-right: -8px;
+  border-radius: 50%;
+  background: var(--ember);
+  transform: scale(0);
+  transition: transform 0.5s var(--ease-spring), margin 0.4s var(--ease-out);
+}
+
+/* La pastille active : crème, avec le point qui apparaît */
+.filter[aria-pressed="true"] {
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--bg);
+}
+
+.filter[aria-pressed="true"]::before {
+  margin-right: 0;
+  transform: scale(1);
+}
+
+/* Le nombre de projets, en petit et en police de code */
+.filter-count {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
