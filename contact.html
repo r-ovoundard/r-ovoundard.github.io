@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – Nissi Rich OVOUNDARD</title>
+  <meta name="description" content="Contacter Nissi Rich OVOUNDARD, développeur full stack en formation, pour une alternance à la rentrée 2027, un projet ou une question.">
+  <meta name="theme-color" content="#0e0c0a">
+
+  <!-- Polices : Fraunces (titres), Manrope (texte), JetBrains Mono (détails "code") -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Styles propres à cette page -->
+  <link rel="stylesheet" href="css/contact.css">
+  <!-- defer : le script attend que la page soit construite avant de s'exécuter -->
+  <script src="js/main.js" defer></script>
+  <!-- Effets propres à cette page -->
+  <script src="js/contact.js" defer></script>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="site-nav">
+    <div class="container nav-inner">
+
+      <!-- Logo : chaque lettre a son propre délai (--i) pour l'effet de roulement -->
+      <a href="index.html" class="logo" aria-label="Nissi Rich OVOUNDARD, accueil">
+        <span class="logo-mark" aria-hidden="true">N</span>
+        <span class="logo-text" aria-hidden="true">
+          <span style="--i: 0">N</span><span style="--i: 1">i</span><span style="--i: 2">s</span><span style="--i: 3">s</span><span style="--i: 4">i</span><span style="--i: 5">&nbsp;</span><span style="--i: 6">R</span><span style="--i: 7">i</span><span style="--i: 8">c</span><span style="--i: 9">h</span>
+        </span>
+      </a>
+
+      <!-- Liens : ici, c'est "Contact" qui est la page en cours -->
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="index.html" class="nav-link">
+          <span class="nav-num">01</span>
+          <span class="nav-label"><span>Accueil</span></span>
+        </a>
+        <a href="projets.html" class="nav-link">
+          <span class="nav-num">02</span>
+          <span class="nav-label"><span>Projets</span></span>
+        </a>
+        <a href="parcours.html" class="nav-link">
+          <span class="nav-num">03</span>
+          <span class="nav-label"><span>Parcours</span></span>
+        </a>
+        <a href="contact.html" class="nav-link" aria-current="page">
+          <span class="nav-num">04</span>
+          <span class="nav-label"><span>Contact</span></span>
+        </a>
+      </nav>
+
+      <!-- Badge de disponibilité -->
+      <a href="contact.html" class="status-badge">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span class="status-text">Alternance · rentrée 2027</span>
+      </a>
+
+      <!-- Bouton du menu sur téléphone (affiché seulement avec JavaScript) -->
+      <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ===== MENU MOBILE ===== -->
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <nav aria-label="Menu mobile">
+      <ul class="mobile-links">
+        <li style="--i: 0"><a href="index.html"><span>01</span>Accueil</a></li>
+        <li style="--i: 1"><a href="projets.html"><span>02</span>Projets</a></li>
+        <li style="--i: 2"><a href="parcours.html"><span>03</span>Parcours</a></li>
+        <li style="--i: 3"><a href="contact.html" aria-current="page"><span>04</span>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-foot">
+      <p>Alternance · rentrée 2027</p>
+      <a href="https://github.com/r-ovoundard" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+
+  <main id="haut">
+
+    <!-- ===== EN-TÊTE ===== -->
+    <section class="page-head container">
+      <p class="section-num">(Écrire) — Contact</p>
+
+      <h1 class="page-title" aria-label="Contact">
+        <span aria-hidden="true">
+          <span class="flip" style="--i: 0">C</span><span class="flip" style="--i: 1">o</span><span class="flip" style="--i: 2">n</span><span class="flip" style="--i: 3">t</span><span class="flip" style="--i: 4">a</span><span class="flip" style="--i: 5">c</span><span class="flip" style="--i: 6">t</span>
+        </span>
+      </h1>
+
+      <p class="page-intro">
+        Une alternance pour la rentrée 2027, un projet, ou simplement une question :
+        je lis et je réponds à chaque message.
+      </p>
+
+      <!-- L'horloge de Paris, mise à jour par le JS -->
+      <p class="clock" aria-live="off">
+        <span class="clock-dot" aria-hidden="true"></span>
+        <span>Il est <time class="clock-time" id="clock-time">—</time> à Paris</span>
+        <span class="clock-sep" aria-hidden="true">·</span>
+        <span class="clock-status" id="clock-status">Réponse sous 48 h</span>
+      </p>
+
+      <div class="page-rule" aria-hidden="true"></div>
+    </section>
+
+    <!-- ===== FORMULAIRE + INFOS ===== -->
+    <section class="contact-zone container" aria-label="Me contacter">
+
+      <!-- Le formulaire -->
+      <div class="contact-panel" data-reveal>
+
+        <!-- Sans JavaScript, le formulaire est envoyé normalement à Formspree -->
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/xkjjwyll" method="POST" novalidate>
+
+          <div class="field-row">
+            <div class="cf-field">
+              <label for="cf-name">Votre nom</label>
+              <input type="text" id="cf-name" name="nom" autocomplete="name" maxlength="80" required>
+              <span class="cf-line" aria-hidden="true"></span>
+              <p class="cf-error" id="cf-name-error"></p>
+            </div>
+
+            <div class="cf-field">
+              <label for="cf-email">Votre email</label>
+              <input type="email" id="cf-email" name="email" autocomplete="email" required>
+              <span class="cf-line" aria-hidden="true"></span>
+              <p class="cf-error" id="cf-email-error"></p>
+            </div>
+          </div>
+
+          <fieldset class="cf-topics">
+            <legend>Sujet</legend>
+            <label class="topic"><input type="radio" name="sujet" value="Alternance" checked><span>Alternance</span></label>
+            <label class="topic"><input type="radio" name="sujet" value="Projet"><span>Projet</span></label>
+            <label class="topic"><input type="radio" name="sujet" value="Question"><span>Question</span></label>
+            <label class="topic"><input type="radio" name="sujet" value="Autre"><span>Autre</span></label>
+          </fieldset>
+
+          <div class="cf-field">
+            <label for="cf-message">Votre message</label>
+            <textarea id="cf-message" name="message" rows="6" maxlength="1000" required></textarea>
+            <span class="cf-line" aria-hidden="true"></span>
+            <div class="cf-foot">
+              <p class="cf-error" id="cf-message-error"></p>
+              <p class="cf-count"><span id="cf-count">0</span> / 1000</p>
+            </div>
+          </div>
+
+          <!-- Piège à robots : invisible pour les humains -->
+          <div class="cf-trap" aria-hidden="true">
+            <label for="cf-gotcha">Ne pas remplir</label>
+            <input type="text" id="cf-gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
+          </div>
+
+          <!-- Objet de l'email que tu reçois -->
+          <input type="hidden" name="_subject" value="Portfolio – nouveau message">
+
+          <p class="cf-alert" id="cf-alert" role="alert"></p>
+
+          <button type="submit" class="send-btn" id="send-btn">
+            <span class="send-label">Envoyer le message</span>
+            <span class="send-loading" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="send-icon" aria-hidden="true">↗</span>
+          </button>
+        </form>
+
+        <!-- Affiché après l'envoi (par le JS) -->
+        <div class="contact-success" id="contact-success" tabindex="-1" hidden>
+          <span class="success-mark" aria-hidden="true">✦</span>
+          <h2>Message <em>envoyé</em></h2>
+          <p>Merci <span id="success-name"></span>, je vous réponds très vite, en général sous 48 heures.</p>
+          <button type="button" class="btn btn-ghost" id="contact-again">
+            <span>Écrire un autre message</span>
+            <span class="btn-icon" aria-hidden="true">↺</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Les infos à côté -->
+      <aside class="contact-aside" data-reveal-group>
+
+        <div class="info-block" data-reveal>
+          <p class="info-label">Email direct</p>
+          <!-- L'adresse est assemblée par le JS : les robots la trouvent moins facilement -->
+          <a class="info-mail" id="mail-link" data-user="ovoundard" data-domain="icloud.com" href="contact.html">
+            ovoundard [at] icloud [point] com
+          </a>
+          <button type="button" class="copy-btn" id="copy-btn">
+            <span class="copy-label">Copier mon email</span>
+            <span aria-hidden="true">⧉</span>
+          </button>
+        </div>
+
+        <div class="info-block" data-reveal>
+          <p class="info-label">Ailleurs</p>
+          <ul class="info-links">
+            <li><a href="https://github.com/r-ovoundard" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://www.linkedin.com/in/rich-ovoundard-7603b143b" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li>
+          </ul>
+        </div>
+
+        <div class="info-block" data-reveal>
+          <p class="info-label">En bref</p>
+          <dl class="info-facts">
+            <div><dt>Recherche</dt><dd>Alternance · rentrée 2027</dd></div>
+            <div><dt>Basé en</dt><dd>Île-de-France</dd></div>
+            <div><dt>Réponse</dt><dd>Sous 48 heures</dd></div>
+          </dl>
+        </div>
+
+      </aside>
+    </section>
+
+  </main>
+
+  <!-- Petite notification ("Adresse copiée") -->
+  <p class="toast" id="toast" role="status" aria-live="polite"></p>
+
+  <!-- ===== PIED DE PAGE ===== -->
+  <footer class="site-footer">
+    <div class="container">
+
+      <div class="footer-top" data-reveal>
+        <div class="footer-intro">
+          <p class="footer-lead">Un projet, une question,<br>ou juste envie d'<em>échanger</em> ?</p>
+          <a href="contact.html" class="project-link">Écrivez-moi <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <nav class="footer-col" aria-label="Plan du site">
+          <h3>Navigation</h3>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="projets.html">Projets</a></li>
+            <li><a href="parcours.html">Parcours</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col">
+          <h3>Ailleurs</h3>
+          <ul>
+            <li><a href="https://github.com/r-ovoundard" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/rich-ovoundard-7603b143b" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+
+        <!-- Sur cette page, le haut s'appelle #haut (le #accueil est sur l'accueil) -->
+        <a href="#haut" class="to-top" aria-label="Revenir en haut de la page">
+          <span aria-hidden="true">↑</span>
+        </a>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Nissi Rich OVOUNDARD</p>
+        <p>Conçu et codé à la main · HTML, CSS &amp; JavaScript</p>
+      </div>
+
+    </div>
+
+    <!-- Le nom géant : une lettre par span, pour les faire surgir une par une -->
+    <p class="footer-giant" aria-hidden="true">
+      <span style="--i: 0">O</span><span style="--i: 1">v</span><span style="--i: 2">o</span><span style="--i: 3">u</span><span style="--i: 4">n</span><span style="--i: 5">d</span><span style="--i: 6">a</span><span style="--i: 7">r</span><span style="--i: 8">d</span>
+    </p>
+  </footer>
+
+</body>
+</html>

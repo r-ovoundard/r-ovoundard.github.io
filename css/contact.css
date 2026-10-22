@@ -1,0 +1,636 @@
+/* =========================================================
+   PAGE CONTACT
+   Ce fichier complète style.css avec ce qui est propre
+   à cette page.
+   ========================================================= */
+
+/* =========================================================
+   L'HORLOGE DE PARIS
+   ========================================================= */
+.clock {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  padding: 10px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(28, 23, 19, 0.5);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  animation: heroFade 0.9s var(--ease-out) 1.2s both;
+}
+
+.clock-time {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.clock-sep,
+.clock-status {
+  color: var(--muted);
+}
+
+/* Le point : vert la journée, ambre la nuit */
+@keyframes clockPing {
+  from { transform: scale(1); opacity: 0.8; }
+  to   { transform: scale(2.8); opacity: 0; }
+}
+
+.clock-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+
+.clock.is-day .clock-dot {
+  background: #7ee0a1;
+}
+
+.clock-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  animation: clockPing 2s var(--ease-out) infinite;
+}
+
+/* =========================================================
+   MISE EN PAGE : FORMULAIRE + INFOS
+   ========================================================= */
+.contact-zone {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 32px;
+  align-items: start;
+  padding: 20px 0 120px;
+}
+
+.contact-panel {
+  position: relative;
+  padding: clamp(28px, 4vw, 48px);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background:
+    radial-gradient(70% 60% at 100% 0%, rgba(255, 106, 43, 0.08), transparent 70%),
+    var(--surface);
+}
+
+/* =========================================================
+   CHAMPS : une simple ligne, qui s'embrase au focus
+   ========================================================= */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.cf-field {
+  position: relative;
+  margin-bottom: 26px;
+}
+
+.cf-field label,
+.cf-topics legend {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.cf-field input,
+.cf-field textarea {
+  width: 100%;
+  padding: 10px 0 12px;
+  border: none;
+  border-bottom: 1px solid var(--line-strong);
+  border-radius: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  outline: none;
+}
+
+.cf-field textarea {
+  min-height: 150px;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+/* Le trait de braise : il part de la gauche */
+.cf-line {
+  display: block;
+  height: 2px;
+  margin-top: -1px;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.cf-field:focus-within label {
+  color: var(--amber);
+}
+
+.cf-field:focus-within .cf-line {
+  transform: scaleX(1);
+}
+
+/* Remplissage automatique du navigateur : on garde nos couleurs */
+.cf-field input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 100px var(--surface) inset;
+  -webkit-text-fill-color: var(--text);
+}
+
+/* Champ en erreur : trait rouge et petite secousse */
+@keyframes cfShake {
+  0%, 100% { transform: none; }
+  25%      { transform: translateX(-6px); }
+  75%      { transform: translateX(6px); }
+}
+
+.cf-field.is-invalid {
+  animation: cfShake 0.4s var(--ease-out);
+}
+
+.cf-field.is-invalid label {
+  color: var(--rose);
+}
+
+.cf-field.is-invalid .cf-line {
+  background: var(--rose);
+  transform: scaleX(1);
+}
+
+.cf-error {
+  min-height: 1.2em;
+  margin-top: 6px;
+  color: var(--rose);
+  font-size: 0.82rem;
+}
+
+.cf-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cf-count {
+  margin-top: 6px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.cf-count.is-near {
+  color: var(--amber);
+}
+
+/* =========================================================
+   SUJETS : des pastilles
+   ========================================================= */
+.cf-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  border: none;
+}
+
+.cf-topics legend {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.topic input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.topic span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s, border-color 0.3s, background 0.3s, transform 0.4s var(--ease-spring);
+}
+
+/* Le point de braise du sujet choisi (même idée que les filtres des projets) */
+.topic span::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-right: -8px;
+  border-radius: 50%;
+  background: var(--ember);
+  transform: scale(0);
+  transition: transform 0.5s var(--ease-spring), margin 0.4s var(--ease-out);
+}
+
+.topic span:hover {
+  border-color: var(--amber);
+  color: var(--text);
+}
+
+.topic input:checked + span {
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--bg);
+}
+
+.topic input:checked + span::before {
+  margin-right: 0;
+  transform: scale(1);
+}
+
+.topic input:focus-visible + span {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
+/* Champ piège : hors de l'écran */
+.cf-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.cf-alert {
+  min-height: 1.2em;
+  margin-bottom: 14px;
+  color: var(--rose);
+  font-size: 0.9rem;
+}
+
+/* =========================================================
+   BOUTON ENVOYER
+   normal → trois points qui sautent pendant l'envoi
+   ========================================================= */
+.send-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 8px 8px 28px;
+  overflow: hidden;
+  isolation: isolate;
+  border: none;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--bg);
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.5s var(--ease-spring), translate 0.4s var(--ease-out);
+}
+
+/* Le dégradé de braise remplit le bouton au survol */
+.send-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.send-btn:hover::before,
+.send-btn.is-sending::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.send-btn:active {
+  transform: scale(0.97);
+}
+
+.send-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--text);
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.send-btn:hover .send-icon {
+  transform: rotate(45deg);
+}
+
+@keyframes dotJump {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40%           { transform: translateY(-6px); opacity: 1; }
+}
+
+.send-loading {
+  display: none;
+  gap: 5px;
+}
+
+.send-loading i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--bg);
+  animation: dotJump 0.9s ease-in-out infinite;
+}
+
+.send-loading i:nth-child(2) { animation-delay: 0.12s; }
+.send-loading i:nth-child(3) { animation-delay: 0.24s; }
+
+.send-btn.is-sending {
+  pointer-events: none;
+}
+
+.send-btn.is-sending .send-label {
+  display: none;
+}
+
+.send-btn.is-sending .send-loading {
+  display: inline-flex;
+  padding-right: 4px;
+}
+
+/* =========================================================
+   GERBE D'ÉTINCELLES (créée par le JS au succès)
+   --dx, --dy : la direction de chaque étincelle
+   ========================================================= */
+@keyframes sparkFly {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+}
+
+.spark {
+  position: fixed;
+  z-index: 500;
+  width: var(--s, 6px);
+  height: var(--s, 6px);
+  margin: calc(var(--s, 6px) / -2) 0 0 calc(var(--s, 6px) / -2);
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 10px var(--ember), 0 0 20px var(--ember);
+  pointer-events: none;
+  animation: sparkFly var(--t, 0.9s) cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+/* =========================================================
+   MESSAGE ENVOYÉ
+   ========================================================= */
+@keyframes successIn {
+  from { opacity: 0; transform: translateY(20px); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+
+@keyframes markSpin {
+  from { transform: scale(0) rotate(-180deg); }
+  to   { transform: none; }
+}
+
+.contact-success {
+  padding: 30px 0 10px;
+  outline: none;
+  animation: successIn 0.8s var(--ease-out) both;
+}
+
+.success-mark {
+  display: inline-block;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 4rem;
+  line-height: 1;
+  animation: markSpin 0.9s var(--ease-spring) 0.2s both;
+}
+
+.contact-success h2 {
+  margin: 14px 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.contact-success h2 em {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.contact-success p {
+  max-width: 440px;
+  margin-bottom: 28px;
+  color: var(--muted);
+}
+
+.contact-success button {
+  background: none;
+  cursor: pointer;
+}
+
+/* =========================================================
+   INFOS À CÔTÉ DU FORMULAIRE
+   ========================================================= */
+.contact-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.info-block {
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.info-label {
+  margin-bottom: 12px;
+  color: var(--ember);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.info-mail {
+  display: block;
+  margin-bottom: 16px;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  overflow-wrap: anywhere;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: color 0.3s, background-size 0.5s var(--ease-out);
+}
+
+.info-mail:hover {
+  color: var(--amber);
+  background-size: 100% 1px;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+
+.copy-btn:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.copy-btn.is-done {
+  border-color: transparent;
+  background: #7ee0a1;
+  color: var(--bg);
+}
+
+.info-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-links a {
+  display: inline-flex;
+  gap: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.info-links a span {
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.info-links a:hover {
+  color: var(--amber);
+}
+
+.info-links a:hover span {
+  transform: translate(3px, -3px);
+}
+
+.info-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.info-facts div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.info-facts div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.info-facts dt {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.info-facts dd {
+  font-weight: 600;
+  text-align: right;
+}
+
+/* =========================================================
+   NOTIFICATION
+   ========================================================= */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 400;
+  padding: 12px 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface-2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 140%);
+  transition: transform 0.6s var(--ease-spring), opacity 0.4s;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* =========================================================
+   ANIMATIONS EN BOUCLE ARRÊTÉES SI DEMANDÉ
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .clock-dot::after,
+  .send-loading i {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   PAGE CONTACT – PETITS ÉCRANS
+   ========================================================= */
+@media (max-width: 960px) {
+  .contact-zone {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .field-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .send-btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .clock-sep {
+    display: none;
+  }
+}
