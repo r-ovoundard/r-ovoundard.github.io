@@ -2358,3 +2358,29 @@ body.menu-open {
   color: var(--bg);
   transform: rotate(-90deg); /* ↘ devient ↗ */
 }
+/* =========================================================
+   PAGE PROJETS – ANIMATION DU FILTRAGE (View Transitions)
+   ========================================================= */
+@keyframes vtIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+}
+
+@keyframes vtOut {
+  to { opacity: 0; transform: scale(0.96); }
+}
+
+/* Les lignes qui restent : elles glissent vers leur nouvelle place */
+::view-transition-group(*) {
+  animation-duration: 0.55s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Une ligne qui apparaît : elle monte en fondu */
+::view-transition-new(*):only-child {
+  animation: vtIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+/* Une ligne qui disparaît : elle rétrécit en fondu */
+::view-transition-old(*):only-child {
+  animation: vtOut 0.3s ease-in both;
+}

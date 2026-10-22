@@ -274,7 +274,44 @@ function initMobileMenu() {
     if (event.matches && isOpen()) closeMenu();
   });
 }
+/* =========================================================
+   7. FILTRES DE LA PAGE PROJETS
+   ========================================================= */
+function initFilters() {
+  const buttons = document.querySelectorAll('.filter');
+  const rows = document.querySelectorAll('.row');
+  if (!buttons.length || !rows.length) return; // pas sur cette page
 
+  // Un nom unique par ligne : le navigateur peut la suivre pendant l'animation
+  rows.forEach((row, index) => {
+    row.style.viewTransitionName = `projet-${index}`;
+  });
+
+  function applyFilter(filter) {
+    // Le bouton cliqué devient actif, les autres non
+    buttons.forEach((button) => {
+      button.setAttribute('aria-pressed', String(button.dataset.filter === filter));
+    });
+
+    // On cache les lignes qui ne correspondent pas au filtre
+    rows.forEach((row) => {
+      row.hidden = filter !== 'tous' && row.dataset.category !== filter;
+    });
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+
+      // Navigateur récent et animations autorisées : on anime
+      if (document.startViewTransition && !reduceMotion) {
+        document.startViewTransition(() => applyFilter(filter));
+      } else {
+        applyFilter(filter);
+      }
+    });
+  });
+}
 /* =========================================================
    DÉMARRAGE
    ========================================================= */
@@ -284,3 +321,4 @@ initCtaOrigin();
 initReveal();
 initCounters();
 initMobileMenu();
+initFilters();
