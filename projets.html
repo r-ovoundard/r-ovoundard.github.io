@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projets – Nissi Rich Ovoundard</title>
+  <meta name="description" content="Les projets de Nissi Rich Ovoundard, développeur full stack en formation : applications web, algorithmique et projets en équipe.">
+  <meta name="theme-color" content="#0e0c0a">
+
+  <!-- Polices : Fraunces (titres), Manrope (texte), JetBrains Mono (détails "code") -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <!-- defer : le script attend que la page soit construite avant de s'exécuter -->
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="site-nav">
+    <div class="container nav-inner">
+
+      <!-- Logo : chaque lettre a son propre délai (--i) pour l'effet de roulement -->
+      <a href="index.html" class="logo" aria-label="Nissi Rich Ovoundard, accueil">
+        <span class="logo-mark" aria-hidden="true">N</span>
+        <span class="logo-text" aria-hidden="true">
+          <span style="--i: 0">N</span><span style="--i: 1">i</span><span style="--i: 2">s</span><span style="--i: 3">s</span><span style="--i: 4">i</span><span style="--i: 5">&nbsp;</span><span style="--i: 6">R</span><span style="--i: 7">i</span><span style="--i: 8">c</span><span style="--i: 9">h</span>
+        </span>
+      </a>
+
+      <!-- Liens : ici, c'est "Projets" qui est la page en cours -->
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="index.html" class="nav-link">
+          <span class="nav-num">01</span>
+          <span class="nav-label"><span>Accueil</span></span>
+        </a>
+        <a href="projets.html" class="nav-link" aria-current="page">
+          <span class="nav-num">02</span>
+          <span class="nav-label"><span>Projets</span></span>
+        </a>
+        <a href="parcours.html" class="nav-link">
+          <span class="nav-num">03</span>
+          <span class="nav-label"><span>Parcours</span></span>
+        </a>
+        <a href="contact.html" class="nav-link">
+          <span class="nav-num">04</span>
+          <span class="nav-label"><span>Contact</span></span>
+        </a>
+      </nav>
+
+      <!-- Badge de disponibilité -->
+      <a href="contact.html" class="status-badge">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span class="status-text">Alternance · rentrée 2027</span>
+      </a>
+
+      <!-- Bouton du menu sur téléphone (affiché seulement avec JavaScript) -->
+      <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ===== MENU MOBILE ===== -->
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <nav aria-label="Menu mobile">
+      <ul class="mobile-links">
+        <li style="--i: 0"><a href="index.html"><span>01</span>Accueil</a></li>
+        <li style="--i: 1"><a href="projets.html" aria-current="page"><span>02</span>Projets</a></li>
+        <li style="--i: 2"><a href="parcours.html"><span>03</span>Parcours</a></li>
+        <li style="--i: 3"><a href="contact.html"><span>04</span>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-foot">
+      <p>Alternance · rentrée 2027</p>
+      <a href="https://github.com/r-ovoundard" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+
+  <main id="haut">
+
+    <!-- EN-TÊTE -->
+
+    <!-- FILTRES -->
+
+    <!-- LISTE DES PROJETS -->
+
+  </main>
+
+  <!-- ===== PIED DE PAGE ===== -->
+  <footer class="site-footer">
+    <div class="container">
+
+      <div class="footer-top" data-reveal>
+        <div class="footer-intro">
+          <p class="footer-lead">Un projet, une question,<br>ou juste envie d'<em>échanger</em> ?</p>
+          <a href="contact.html" class="project-link">Écrivez-moi <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <nav class="footer-col" aria-label="Plan du site">
+          <h3>Navigation</h3>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="projets.html">Projets</a></li>
+            <li><a href="parcours.html">Parcours</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col">
+          <h3>Ailleurs</h3>
+          <ul>
+            <li><a href="https://github.com/r-ovoundard" target="_blank" rel="noopener">GitHub</a></li>
+            <!-- Quand tu auras un LinkedIn, ajoute une ligne comme celle-ci :
+            <li><a href="https://www.linkedin.com/in/TON-PROFIL" target="_blank" rel="noopener">LinkedIn</a></li>
+            -->
+          </ul>
+        </div>
+
+        <!-- Sur cette page, le haut s'appelle #haut (le #accueil est sur l'accueil) -->
+        <a href="#haut" class="to-top" aria-label="Revenir en haut de la page">
+          <span aria-hidden="true">↑</span>
+        </a>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Nissi Rich Ovoundard</p>
+        <p>Conçu et codé à la main · HTML, CSS &amp; JavaScript</p>
+      </div>
+
+    </div>
+
+    <!-- Le nom géant : une lettre par span, pour les faire surgir une par une -->
+    <p class="footer-giant" aria-hidden="true">
+      <span style="--i: 0">O</span><span style="--i: 1">v</span><span style="--i: 2">o</span><span style="--i: 3">u</span><span style="--i: 4">n</span><span style="--i: 5">d</span><span style="--i: 6">a</span><span style="--i: 7">r</span><span style="--i: 8">d</span>
+    </p>
+  </footer>
+
+</body>
+</html>
