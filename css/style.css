@@ -421,3 +421,273 @@ body::before {
     padding: 11px;
   }
 }
+/* =========================================================
+   HÉROS – ANIMATIONS
+   ========================================================= */
+/* Apparition : monte en sortant du flou */
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(24px); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+
+/* Une ligne du titre sort de sa "fente" */
+@keyframes lineUp {
+  from { transform: translateY(110%) rotate(5deg); }
+  to   { transform: none; }
+}
+
+/* Un trait qui se dessine de gauche à droite */
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+}
+
+/* La machine à écrire : la largeur grandit caractère par caractère */
+@keyframes typing {
+  to { width: 33ch; } /* 33 = nombre de caractères de la phrase */
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* =========================================================
+   HÉROS – STRUCTURE
+   ========================================================= */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100svh; /* toute la hauteur de l'écran */
+  padding: 140px 0 100px;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* Petite étiquette "Portfolio — 2026" */
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  animation: heroFade 0.9s var(--ease-out) 0.3s both;
+}
+
+.kicker-line {
+  width: 48px;
+  height: 1px;
+  background: var(--gradient);
+  transform-origin: left;
+  animation: lineGrow 1s var(--ease-out) 0.5s both;
+}
+
+/* =========================================================
+   HÉROS – LE NOM GÉANT
+   ========================================================= */
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 11vw, 9.5rem); /* s'adapte à la largeur de l'écran */
+  font-weight: 400;
+  font-variation-settings: "opsz" 144;    /* version "grand titre" de la police */
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+
+/* La "fente" : ce qui dépasse est caché */
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em; /* ne coupe pas le bas des lettres */
+}
+
+.hero-title .line > span {
+  display: inline-block;
+  transform-origin: left bottom;
+  animation: lineUp 1.2s var(--ease-out) both;
+  animation-delay: calc(0.45s + var(--d) * 0.14s); /* la 2e ligne arrive juste après */
+}
+
+/* Effet "magazine" : la 2e ligne est décalée vers la droite */
+.hero-title .line:nth-child(2) {
+  padding-left: clamp(0px, 8vw, 140px);
+}
+
+/* "Ovoundard" : italique fin, avec un dégradé de braise qui ondule */
+.hero-title .accent {
+  padding-right: 0.08em; /* l'italique déborde un peu à droite */
+  background: var(--gradient);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-style: italic;
+  font-weight: 300;
+  animation: lineUp 1.2s var(--ease-out) both, gradientShift 5s ease-in-out infinite alternate;
+  animation-delay: calc(0.45s + var(--d) * 0.14s), 1.6s;
+}
+
+/* =========================================================
+   HÉROS – LA PHRASE TAPÉE
+   ========================================================= */
+.hero-typed {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  animation: heroFade 0.8s var(--ease-out) 1.1s both;
+}
+
+.prompt {
+  color: var(--ember);
+}
+
+.typed {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Le texte est caché (largeur 0), puis révélé caractère par caractère :
+   steps(33) = 33 sauts, un par caractère (police à chasse fixe) */
+.typed-text {
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 2.2s steps(33) 1.6s forwards;
+}
+
+.caret {
+  display: inline-block;
+  width: 0.6ch;
+  height: 1.2em;
+  margin-left: 2px;
+  background: var(--amber);
+  animation: blink 1s steps(1) infinite;
+}
+
+/* =========================================================
+   HÉROS – PRÉSENTATION
+   ========================================================= */
+.hero-intro {
+  max-width: 580px;
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 1.1rem;
+  animation: heroFade 0.9s var(--ease-out) 1.3s both;
+}
+
+.hero-intro strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* =========================================================
+   BOUTONS (réutilisés sur tout le site)
+   ========================================================= */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 40px;
+  animation: heroFade 0.9s var(--ease-out) 1.5s both;
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  overflow: hidden;
+  isolation: isolate; /* le remplissage reste derrière le texte */
+  border-radius: 999px;
+  font-weight: 600;
+  transition: transform 0.5s var(--ease-spring), border-color 0.4s, color 0.4s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* --- Bouton principal : crème, rempli de braise au survol --- */
+.btn-primary {
+  padding: 8px 8px 8px 26px;
+  background: var(--text);
+  color: var(--bg);
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transform-origin: right; /* repart vers la droite quand la souris s'en va */
+  transition: transform 0.6s var(--ease-out);
+}
+
+.btn-primary:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;  /* arrive par la gauche */
+}
+
+/* Le rond de la flèche : deux flèches, l'une remplace l'autre */
+.btn-arrow {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.btn-arrow span {
+  position: absolute;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.btn-arrow span:last-child {
+  transform: translateX(-160%); /* la 2e attend, cachée à gauche */
+}
+
+.btn-primary:hover .btn-arrow span:first-child {
+  transform: translateX(160%);  /* la 1re part à droite */
+}
+
+.btn-primary:hover .btn-arrow span:last-child {
+  transform: none;              /* la 2e arrive */
+}
+
+/* --- Bouton secondaire : contour, devient ambre --- */
+.btn-ghost {
+  padding: 15px 24px 15px 26px;
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+}
+
+.btn-ghost:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.btn-icon {
+  display: inline-block;
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.btn-ghost:hover .btn-icon {
+  transform: rotate(45deg); /* ↗ devient → */
+}
