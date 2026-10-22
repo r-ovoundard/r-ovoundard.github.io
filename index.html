@@ -56,8 +56,32 @@
         <span class="status-text">Alternance · rentrée 2027</span>
       </a>
 
+      <!-- Bouton du menu sur téléphone (affiché seulement avec JavaScript) -->
+      <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">
+        <span></span>
+        <span></span>
+      </button>
+
     </div>
   </header>
+
+  <!-- ===== MENU MOBILE =====
+       En dehors du <header> : le menu animé du haut empêcherait
+       ce panneau de couvrir tout l'écran. -->
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <nav aria-label="Menu mobile">
+      <ul class="mobile-links">
+        <li style="--i: 0"><a href="index.html" aria-current="page"><span>01</span>Accueil</a></li>
+        <li style="--i: 1"><a href="projets.html"><span>02</span>Projets</a></li>
+        <li style="--i: 2"><a href="parcours.html"><span>03</span>Parcours</a></li>
+        <li style="--i: 3"><a href="contact.html"><span>04</span>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-foot">
+      <p>Alternance · rentrée 2027</p>
+      <a href="https://github.com/r-ovoundard" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
 
   <main>
 

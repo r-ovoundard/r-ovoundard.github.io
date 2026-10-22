@@ -406,11 +406,7 @@ body::before {
    NAVIGATION – PETITS ÉCRANS (provisoire)
    Le vrai menu burger arrivera à l'étape 11.
    ========================================================= */
-@media (max-width: 860px) {
-  .nav-links {
-    display: none;
-  }
-}
+
 
 @media (max-width: 520px) {
   .status-text {
@@ -1957,4 +1953,177 @@ body::before {
   transform: none;
   -webkit-clip-path: inset(-20% -5% -20% -5%);
   clip-path: inset(-20% -5% -20% -5%);
+}
+/* =========================================================
+   MENU BURGER – LE BOUTON
+   ========================================================= */
+.burger {
+  display: none; /* visible seulement sur petit écran, avec JS */
+  position: relative;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: rgba(28, 23, 19, 0.6);
+  cursor: pointer;
+}
+
+/* Deux traits… */
+.burger span {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: var(--text);
+  transition: top 0.3s var(--ease-out), transform 0.5s var(--ease-spring);
+}
+
+.burger span:nth-child(1) { top: 19px; }
+.burger span:nth-child(2) { top: 27px; }
+
+/* …qui se rejoignent au milieu et se croisent en ✕ */
+.burger[aria-expanded="true"] span:nth-child(1) {
+  top: 23px;
+  transform: rotate(45deg);
+}
+
+.burger[aria-expanded="true"] span:nth-child(2) {
+  top: 23px;
+  transform: rotate(-45deg);
+}
+
+/* =========================================================
+   MENU BURGER – LE PANNEAU
+   Il s'ouvre en cercle depuis le bouton (en haut à droite).
+   ========================================================= */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 90; /* sous le menu du haut (100) : le bouton ✕ reste cliquable */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 24px 40px;
+  background:
+    radial-gradient(60% 40% at 100% 0%, rgba(255, 106, 43, 0.18), transparent 70%),
+    radial-gradient(50% 40% at 0% 100%, rgba(255, 79, 109, 0.12), transparent 70%),
+    var(--bg);
+  -webkit-clip-path: circle(0% at calc(100% - 48px) 44px);
+  clip-path: circle(0% at calc(100% - 48px) 44px);
+  pointer-events: none;
+  transition: clip-path 0.8s var(--ease-out), -webkit-clip-path 0.8s var(--ease-out);
+}
+
+.mobile-menu.is-open {
+  -webkit-clip-path: circle(150% at calc(100% - 48px) 44px);
+  clip-path: circle(150% at calc(100% - 48px) 44px);
+  pointer-events: auto;
+}
+
+/* La page ne défile plus derrière le menu ouvert */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Les liens surgissent de leur "fente", l'un après l'autre */
+.mobile-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mobile-links li {
+  overflow: hidden;
+}
+
+.mobile-links a {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 12vw, 4.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  transform: translateY(110%);
+  transition: transform 0.8s var(--ease-out), color 0.3s;
+  transition-delay: calc(0.15s + var(--i) * 0.07s);
+}
+
+.mobile-menu.is-open .mobile-links a {
+  transform: none;
+}
+
+.mobile-links a span {
+  color: var(--ember);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.mobile-links a[aria-current="page"] {
+  color: var(--amber);
+  font-style: italic;
+}
+
+.mobile-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.6s 0.45s;
+}
+
+.mobile-menu.is-open .mobile-foot {
+  opacity: 1;
+}
+
+/* =========================================================
+   RESPONSIVE – TÉLÉPHONE ET TABLETTE
+   ========================================================= */
+@media (max-width: 860px) {
+  /* Sans JS, pas de burger : le plan du site reste dans le pied de page */
+  .nav-links {
+    display: none;
+  }
+
+  .js .burger {
+    display: block;
+  }
+
+  /* Le badge et le burger restent ensemble à droite */
+  .nav-inner {
+    gap: 12px;
+  }
+
+  .status-badge {
+    margin-left: auto;
+  }
+
+  .hero {
+    padding: 120px 0 80px;
+  }
+}
+
+@media (max-width: 420px) {
+  /* La phrase tapée doit tenir sur un petit téléphone */
+  .hero-typed {
+    font-size: 0.82rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .btn-ghost {
+    justify-content: center;
+  }
 }

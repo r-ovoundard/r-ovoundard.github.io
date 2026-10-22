@@ -4,6 +4,9 @@
    des effets (amélioration progressive).
    ========================================================= */
 
+// Le JS est bien chargé : le CSS peut afficher ce qui en dépend (le menu burger)
+document.documentElement.classList.add('js');
+
 // Une vraie souris ? (pas un écran tactile)
 const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 // L'utilisateur a-t-il demandé moins d'animations dans son système ?
@@ -219,6 +222,60 @@ function initCounters() {
 }
 
 /* =========================================================
+   6. MENU MOBILE
+   Le panneau s'ouvre en cercle depuis le bouton burger.
+   ========================================================= */
+function initMobileMenu() {
+  const burger = document.querySelector('.burger');
+  const menu = document.getElementById('mobile-menu');
+  if (!burger || !menu) return;
+
+  const isOpen = () => burger.getAttribute('aria-expanded') === 'true';
+
+  function openMenu() {
+    menu.hidden = false;
+    // Deux images d'attente : le navigateur affiche d'abord le panneau fermé,
+    // puis l'ouvre, sinon la transition ne se jouerait pas
+    requestAnimationFrame(() => requestAnimationFrame(() => menu.classList.add('is-open')));
+    burger.setAttribute('aria-expanded', 'true');
+    burger.setAttribute('aria-label', 'Fermer le menu');
+    document.body.classList.add('menu-open'); // empêche la page de défiler derrière
+  }
+
+  function closeMenu() {
+    menu.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Ouvrir le menu');
+    document.body.classList.remove('menu-open');
+
+    // Une fois le cercle refermé, on cache vraiment le panneau
+    menu.addEventListener('transitionend', function hide(event) {
+      if (event.target !== menu) return;
+      if (!isOpen()) menu.hidden = true;
+      menu.removeEventListener('transitionend', hide);
+    });
+  }
+
+  burger.addEventListener('click', () => (isOpen() ? closeMenu() : openMenu()));
+
+  // Un lien cliqué ferme le menu
+  menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+
+  // Échap ferme le menu et rend la main au bouton
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isOpen()) {
+      closeMenu();
+      burger.focus();
+    }
+  });
+
+  // L'écran redevient large (téléphone tourné, fenêtre agrandie) : on ferme
+  window.matchMedia('(min-width: 861px)').addEventListener('change', (event) => {
+    if (event.matches && isOpen()) closeMenu();
+  });
+}
+
+/* =========================================================
    DÉMARRAGE
    ========================================================= */
 initCursor();
@@ -226,3 +283,4 @@ initMagnetic();
 initCtaOrigin();
 initReveal();
 initCounters();
+initMobileMenu();
