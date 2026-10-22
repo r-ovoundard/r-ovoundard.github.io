@@ -13,6 +13,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
+    <!-- defer : le script attend que la page soit construite avant de s'exécuter -->
+  <script src="js/main.js" defer></script>
 </head>
 <body>
 
@@ -206,7 +208,7 @@
       <div class="project-grid">
 
         <!-- MonBudget : la grande carte -->
-        <article class="project-card project-featured">
+         <article class="project-card project-featured" data-cursor="Voir"></article>
           <div class="project-media">
             <img src="images/projets/monbudget.png"
                  alt="Tableau de bord de MonBudget : anneau du budget, dépenses du mois et dernières dépenses"
@@ -232,7 +234,7 @@
         </article>
 
         <!-- CinéMatch : des affiches de films en éventail -->
-        <article class="project-card">
+        <article class="project-card" data-cursor="Voir"></article>
           <div class="project-media media-cinematch" aria-hidden="true">
             <p class="match-pill">Recommandé pour vous · 98 %</p>
             <div class="posters">
@@ -349,7 +351,7 @@
       </ul>
 
       <!-- Appel au contact : tout le bloc est un lien -->
-      <a href="contact.html" class="cta">
+     <a href="contact.html" class="cta" data-cursor="Écrire"></a>
         <span class="cta-kicker">Une opportunité ? Une question ?</span>
         <span class="cta-title">Travaillons <em>ensemble</em></span>
         <span class="cta-arrow" aria-hidden="true">→</span>
