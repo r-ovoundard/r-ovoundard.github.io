@@ -1557,3 +1557,13 @@ body::before {
     padding-bottom: 80px; /* laisse la place à la flèche */
   }
 }
+/* Badge : ambre = "bientôt disponible" */
+.status-dot,
+.status-dot::after {
+  background: var(--amber);
+  box-shadow: 0 0 10px var(--amber);
+}
+
+.status-badge:hover {
+  border-color: var(--amber);
+}
