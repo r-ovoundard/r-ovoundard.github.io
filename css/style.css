@@ -691,3 +691,189 @@ body::before {
 .btn-ghost:hover .btn-icon {
   transform: rotate(45deg); /* ↗ devient → */
 }
+/* =========================================================
+   HÉROS – DÉCOR
+   ========================================================= */
+.hero {
+  overflow: hidden; /* la sphère et les étincelles ne débordent pas */
+}
+
+.hero-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* =========================================================
+   HÉROS – LE CŒUR DE BRAISE
+   Trois lueurs décalées dans un même cercle, très floutées.
+   Comme elles ne sont pas centrées, la rotation les fait bouger.
+   ========================================================= */
+@keyframes orbIn {
+  from { opacity: 0; transform: translateY(-50%) scale(0.6); }
+  to   { opacity: 1; transform: translateY(-50%) scale(1); }
+}
+
+@keyframes breathe {
+  from { transform: translateY(-50%) scale(1) rotate(0deg); }
+  to   { transform: translateY(-53%) scale(1.08) rotate(25deg); }
+}
+
+.hero-orb {
+  position: absolute;
+  top: 50%;
+  right: -8%;
+  width: min(62vw, 720px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 35%, rgba(255, 179, 92, 0.55), transparent 55%),
+    radial-gradient(circle at 65% 62%, rgba(255, 79, 109, 0.45), transparent 60%),
+    radial-gradient(circle, rgba(255, 106, 43, 0.35), transparent 70%);
+  filter: blur(40px);
+  /* s'allume, PUIS respire en boucle (le 2e démarre quand le 1er finit) */
+  animation:
+    orbIn 2s ease-out 0.2s both,
+    breathe 9s ease-in-out 2.2s infinite alternate;
+}
+
+/* =========================================================
+   HÉROS – LES ÉTINCELLES
+   ========================================================= */
+@keyframes rise {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { transform: translate(22px, -40vh); }   /* ondule vers la droite… */
+  100% { transform: translate(-16px, -85vh); opacity: 0; } /* …puis vers la gauche et s'éteint */
+}
+
+.sparks span {
+  position: absolute;
+  bottom: -10px;
+  left: var(--x);
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 8px var(--ember), 0 0 18px var(--ember); /* le halo lumineux */
+  opacity: 0;
+  animation: rise var(--t) linear var(--d) infinite;
+}
+
+/* =========================================================
+   HÉROS – INFOS CLÉS
+   ========================================================= */
+.hero-meta {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 48px;
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  animation: heroFade 0.9s var(--ease-out) 1.7s both;
+}
+
+.hero-meta li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-weight: 600;
+}
+
+.hero-meta span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   HÉROS – BADGE CIRCULAIRE
+   ========================================================= */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes nudge {
+  0%, 100% { transform: translateY(-2px); }
+  50%      { transform: translateY(4px); }
+}
+
+.scroll-badge {
+  position: absolute;
+  /* aligné sur le bord droit du contenu, quelle que soit la largeur de l'écran */
+  right: max(24px, calc((100vw - var(--max)) / 2));
+  bottom: 56px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 130px;
+  height: 130px;
+  animation: heroFade 1s var(--ease-out) 1.9s both;
+}
+
+.badge-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: spin 18s linear infinite;
+}
+
+.badge-ring text {
+  fill: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  transition: fill 0.4s;
+}
+
+.badge-arrow {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--surface);
+  font-size: 1.2rem;
+  transition: background 0.4s, color 0.4s, border-color 0.4s, transform 0.5s var(--ease-spring);
+}
+
+/* La flèche sautille pour inviter à descendre */
+.badge-arrow {
+  animation: nudge 2s ease-in-out infinite;
+}
+
+.scroll-badge:hover .badge-arrow {
+  border-color: transparent;
+  background: var(--ember);
+  color: var(--bg);
+}
+
+.scroll-badge:hover .badge-ring text {
+  fill: var(--amber);
+}
+
+/* =========================================================
+   HÉROS – PETITS ÉCRANS
+   ========================================================= */
+@media (max-width: 760px) {
+  .hero-orb {
+    top: 30%;
+    right: -40%;
+    width: 120vw;
+  }
+
+  .scroll-badge {
+    display: none; /* il gênerait la lecture sur un petit écran */
+  }
+
+  .hero-meta {
+    gap: 16px 32px;
+  }
+}

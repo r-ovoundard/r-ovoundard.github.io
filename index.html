@@ -61,6 +61,24 @@
 
         <!-- ===== ACCUEIL ===== -->
     <section class="hero" id="accueil">
+              <!-- Décor : la sphère de braise et les étincelles (purement visuel) -->
+      <div class="hero-decor" aria-hidden="true">
+        <div class="hero-orb"></div>
+        <div class="sparks">
+          <span style="--x: 52%; --s: 4px; --t: 9s;  --d: 0s"></span>
+          <span style="--x: 58%; --s: 3px; --t: 11s; --d: 2s"></span>
+          <span style="--x: 64%; --s: 5px; --t: 8s;  --d: 4s"></span>
+          <span style="--x: 70%; --s: 3px; --t: 12s; --d: 1s"></span>
+          <span style="--x: 74%; --s: 4px; --t: 10s; --d: 6s"></span>
+          <span style="--x: 79%; --s: 2px; --t: 9s;  --d: 3s"></span>
+          <span style="--x: 83%; --s: 5px; --t: 13s; --d: 5s"></span>
+          <span style="--x: 88%; --s: 3px; --t: 10s; --d: 7s"></span>
+          <span style="--x: 92%; --s: 4px; --t: 11s; --d: 2.5s"></span>
+          <span style="--x: 30%; --s: 3px; --t: 14s; --d: 8s"></span>
+          <span style="--x: 40%; --s: 2px; --t: 12s; --d: 5.5s"></span>
+          <span style="--x: 96%; --s: 3px; --t: 9s;  --d: 9s"></span>
+        </div>
+      </div>
       <div class="container hero-inner">
 
         <p class="hero-kicker">
@@ -98,7 +116,26 @@
           </a>
         </div>
 
+        <!-- Infos clés -->
+        <ul class="hero-meta">
+          <li><span>Basé en</span>Île-de-France</li>
+          <li><span>Statut</span>En formation</li>
+          <li><span>Recherche</span>Alternance</li>
+        </ul>
       </div>
+      
+      <!-- Badge circulaire : le texte suit un cercle (textPath) et tourne -->
+      <a href="#projets" class="scroll-badge" aria-label="Descendre vers les projets">
+        <svg class="badge-ring" viewBox="0 0 120 120" aria-hidden="true">
+          <defs>
+            <path id="badge-circle" d="M 60,60 m -46,0 a 46,46 0 1,1 92,0 a 46,46 0 1,1 -92,0" />
+          </defs>
+          <text textLength="286" lengthAdjust="spacing">
+            <textPath href="#badge-circle">DÉVELOPPEUR FULL STACK • EN FORMATION • </textPath>
+          </text>
+        </svg>
+        <span class="badge-arrow" aria-hidden="true">↓</span>
+      </a>
     </section>
 
     <!-- COMPÉTENCES -->
