@@ -171,3 +171,253 @@ body::before {
     scroll-behavior: auto !important;
   }
 }
+/* =========================================================
+   NAVIGATION – STRUCTURE
+   ========================================================= */
+:root {
+  --mint: #7ee0a1; /* vert "disponible", utilisé seulement pour le badge */
+}
+
+/* Le menu descend du haut au chargement */
+@keyframes navIn {
+  from { opacity: 0; transform: translateY(-100%); }
+  to   { opacity: 1; transform: none; }
+}
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding-block: 22px;
+  border-bottom: 1px solid transparent;
+  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
+  animation: navIn 1s var(--ease-out) 0.1s both;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+/* =========================================================
+   NAVIGATION – LOGO
+   ========================================================= */
+@keyframes gradientShift {
+  from { background-position: 0% 50%; }
+  to   { background-position: 100% 50%; }
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* La pastille : un dégradé de braise qui ondule doucement */
+.logo-mark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gradient);
+  background-size: 200% 200%;
+  color: var(--bg);
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 700;
+  animation: gradientShift 6s ease-in-out infinite alternate;
+  transition: transform 0.6s var(--ease-spring);
+}
+
+.logo:hover .logo-mark {
+  transform: rotate(-12deg) scale(1.08);
+}
+
+/* Effet de roulement : une copie ambre de chaque lettre est cachée
+   juste en dessous (text-shadow). Au survol, la lettre monte :
+   la copie prend sa place. */
+.logo-text {
+  display: inline-flex;
+  height: 1.2em;
+  overflow: hidden;
+  line-height: 1.2;
+}
+
+.logo-text span {
+  display: inline-block;
+  text-shadow: 0 1.2em 0 var(--amber);
+  transition: transform 0.55s var(--ease-out);
+  transition-delay: calc(var(--i) * 28ms); /* les lettres partent l'une après l'autre */
+}
+
+.logo:hover .logo-text span {
+  transform: translateY(-1.2em);
+}
+
+/* =========================================================
+   NAVIGATION – LIENS
+   ========================================================= */
+.nav-links {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(28, 23, 19, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+/* Le petit numéro, en police de code */
+.nav-num {
+  color: var(--ember);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  opacity: 0.75;
+}
+
+/* Même effet de roulement que le logo, sur le mot entier */
+.nav-label {
+  display: inline-block;
+  height: 1.5em;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+.nav-label span {
+  display: block;
+  text-shadow: 0 1.5em 0 var(--text);
+  transition: transform 0.5s var(--ease-out);
+}
+
+.nav-link:hover .nav-label span {
+  transform: translateY(-1.5em);
+}
+
+/* La page en cours */
+.nav-link[aria-current="page"] {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+/* =========================================================
+   NAVIGATION – BADGE "DISPONIBLE"
+   ========================================================= */
+/* Une onde qui part du point, comme un signal radar */
+@keyframes ping {
+  from { transform: scale(1); opacity: 0.8; }
+  to   { transform: scale(3); opacity: 0; }
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(28, 23, 19, 0.5);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: border-color 0.4s, transform 0.4s var(--ease-spring);
+}
+
+.status-badge:hover {
+  border-color: var(--mint);
+  transform: translateY(-2px);
+}
+
+.status-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 10px var(--mint);
+}
+
+.status-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--mint);
+  animation: ping 1.8s var(--ease-out) infinite;
+}
+
+/* =========================================================
+   NAVIGATION – BARRE DE VERRE AU DÉFILEMENT
+   Nouveauté du CSS : l'animation avance avec le défilement
+   de la page (scroll()) au lieu du temps.
+   Sur les 200 premiers pixels, le menu devient du verre dépoli.
+   ========================================================= */
+@keyframes navSolid {
+  to {
+    padding-block: 12px;
+    border-bottom-color: var(--line);
+    background: rgba(14, 12, 10, 0.75);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .site-nav {
+    animation: navIn 1s var(--ease-out) 0.1s both, navSolid linear both;
+    animation-timeline: auto, scroll();
+    animation-range: normal, 0 200px;
+  }
+}
+
+/* Navigateurs qui ne connaissent pas encore cette nouveauté :
+   le menu est directement en verre dépoli */
+@supports not (animation-timeline: scroll()) {
+  .site-nav {
+    border-bottom-color: var(--line);
+    background: rgba(14, 12, 10, 0.75);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+}
+
+/* =========================================================
+   NAVIGATION – PETITS ÉCRANS (provisoire)
+   Le vrai menu burger arrivera à l'étape 11.
+   ========================================================= */
+@media (max-width: 860px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .status-text {
+    display: none; /* on garde seulement le point vert */
+  }
+
+  .status-badge {
+    padding: 11px;
+  }
+}
