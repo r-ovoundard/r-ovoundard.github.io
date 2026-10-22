@@ -2384,3 +2384,64 @@ body.menu-open {
 ::view-transition-old(*):only-child {
   animation: vtOut 0.3s ease-in both;
 }
+/* =========================================================
+   PAGE PROJETS – APERÇU FLOTTANT (créé par js/main.js)
+   ========================================================= */
+.preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 80;
+  pointer-events: none; /* ne bloque jamais la souris */
+}
+
+/* La carte, décalée à droite de la souris */
+.preview-card {
+  position: absolute;
+  width: 320px;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  background: var(--gradient);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  scale: 0.6;
+  transform: translate(40px, -50%);
+  transition: opacity 0.35s, scale 0.5s var(--ease-spring);
+}
+
+.preview.is-visible .preview-card {
+  opacity: 1;
+  scale: 1;
+}
+
+.preview-card img {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+/* Sans image : le nom du projet, en grand, sur le fond de braise */
+.preview-text {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  padding: 20px;
+  color: var(--bg);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Avec image : on montre l'image, on cache le nom */
+.preview.has-image img {
+  display: block;
+}
+
+.preview.has-image .preview-text {
+  display: none;
+}

@@ -313,6 +313,79 @@ function initFilters() {
   });
 }
 /* =========================================================
+   8. APERÇU FLOTTANT DE LA PAGE PROJETS
+   Une carte suit la souris en s'inclinant selon sa vitesse.
+   ========================================================= */
+function initPreview() {
+  const rows = document.querySelectorAll('.row');
+  if (!rows.length || !fancyEffects) return;
+
+  // La carte est créée par le JS, une seule fois pour toute la page
+  const preview = document.createElement('div');
+  preview.className = 'preview';
+  preview.setAttribute('aria-hidden', 'true');
+  preview.innerHTML = '<div class="preview-card"><img alt=""><p class="preview-text"></p></div>';
+  document.body.append(preview);
+
+  const image = preview.querySelector('img');
+  const text = preview.querySelector('.preview-text');
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let x = 0;
+  let y = 0;
+  let angle = 0;
+
+  window.addEventListener('pointermove', (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+  });
+
+  function follow() {
+    const distanceX = mouseX - x;
+
+    // La carte parcourt 12 % du chemin à chaque image : elle "flotte"
+    x += distanceX * 0.12;
+    y += (mouseY - y) * 0.12;
+
+    // Plus la souris va vite, plus la carte penche (au maximum 12°)
+    const targetAngle = Math.max(-12, Math.min(12, distanceX * 0.08));
+    angle += (targetAngle - angle) * 0.1;
+
+    preview.style.transform = `translate(${x}px, ${y}px) rotate(${angle}deg)`;
+    requestAnimationFrame(follow);
+  }
+  follow();
+
+  rows.forEach((row) => {
+    const head = row.querySelector('.row-head');
+
+    head.addEventListener('pointerenter', () => {
+      // Si la carte était cachée, elle apparaît directement sous la souris
+      if (!preview.classList.contains('is-visible')) {
+        x = mouseX;
+        y = mouseY;
+      }
+
+      // Une image si le projet en a une, sinon son nom
+      const source = row.dataset.preview;
+      if (source) {
+        image.src = source;
+        preview.classList.add('has-image');
+      } else {
+        preview.classList.remove('has-image');
+      }
+      text.textContent = row.querySelector('.row-title').textContent;
+
+      preview.classList.add('is-visible');
+    });
+
+    head.addEventListener('pointerleave', () => {
+      preview.classList.remove('is-visible');
+    });
+  });
+}
+/* =========================================================
    DÉMARRAGE
    ========================================================= */
 initCursor();
@@ -322,3 +395,4 @@ initReveal();
 initCounters();
 initMobileMenu();
 initFilters();
+initPreview();
