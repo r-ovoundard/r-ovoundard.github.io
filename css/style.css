@@ -2562,3 +2562,59 @@ body.menu-open {
 .footer-giant span {
   text-transform: uppercase;
 }
+/* =========================================================
+   PAGE PROJETS – PETITS ÉCRANS
+   ========================================================= */
+@media (max-width: 760px) {
+  .page-head {
+    padding: 130px 0 40px;
+  }
+
+  /* La ligne passe de 5 colonnes à 3, sur 2 rangées */
+  .row-head {
+    grid-template-columns: 32px 1fr 40px;
+    gap: 6px 14px;
+    padding: 22px 4px;
+  }
+
+  /* Les technos passent sous le nom (colonne 2, rangée 2) */
+  .row-tags {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .row-year {
+    display: none;
+  }
+
+  /* La flèche reste en haut à droite */
+  .row-arrow {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .row-head:hover .row-title,
+  .row.is-open .row-title {
+    transform: translateX(6px);
+  }
+
+  /* Dans le tiroir : les 4 parties l'une sous l'autre */
+  .case {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-left: 0;
+    padding-left: 20px;
+  }
+
+  .case-links {
+    margin: 24px 0 32px 20px;
+  }
+}
+
+/* Sur un écran tactile, il n'y a pas de vrai "survol" :
+   on n'estompe pas les autres lignes après un toucher */
+@media (hover: none) {
+  .project-list:has(.row-head:hover) .row:not(:hover) {
+    opacity: 1;
+  }
+}

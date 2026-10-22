@@ -83,7 +83,7 @@
 
   <main id="haut">
 
-       <!-- ===== EN-TÊTE ===== -->
+    <!-- ===== EN-TÊTE ===== -->
     <section class="page-head container">
       <p class="section-num">(Index) — Travaux</p>
 
@@ -102,7 +102,7 @@
       <div class="page-rule" aria-hidden="true"></div>
     </section>
 
-        <!-- ===== FILTRES ===== -->
+    <!-- ===== FILTRES ===== -->
     <div class="filters container" role="group" aria-label="Filtrer les projets">
       <button type="button" class="filter" data-filter="tous" aria-pressed="true">
         Tous <span class="filter-count">04</span>
@@ -117,18 +117,20 @@
         En équipe <span class="filter-count">01</span>
       </button>
     </div>
+
     <!-- ===== LISTE DES PROJETS ===== -->
     <section class="project-list container" aria-label="Liste des projets" data-reveal-group>
 
-            <article class="row" data-category="fullstack" data-reveal data-preview="images/projets/monbudget.png">
-         <button type="button" class="row-head" aria-expanded="false" aria-controls="detail-monbudget">
+      <!-- 01 · MonBudget -->
+      <article class="row" data-category="fullstack" data-reveal data-preview="images/projets/monbudget.png">
+        <button type="button" class="row-head" aria-expanded="false" aria-controls="detail-monbudget">
           <span class="row-num">01</span>
           <span class="row-title" id="titre-monbudget">MonBudget</span>
           <span class="row-tags">HTML · CSS · JS · PHP · MySQL</span>
           <span class="row-year">2026</span>
           <span class="row-arrow" aria-hidden="true">↘</span>
         </button>
-                <div class="row-detail" id="detail-monbudget" role="region" aria-labelledby="titre-monbudget" inert>
+        <div class="row-detail" id="detail-monbudget" role="region" aria-labelledby="titre-monbudget" inert>
           <div class="row-detail-inner">
             <dl class="case">
               <div>
@@ -157,34 +159,118 @@
         </div>
       </article>
 
+      <!-- 02 · CinéMatch -->
       <article class="row" data-category="algo" data-reveal>
-        <button type="button" class="row-head" aria-expanded="false" aria-controls="detail-monbudget">
+        <button type="button" class="row-head" aria-expanded="false" aria-controls="detail-cinematch">
           <span class="row-num">02</span>
-          <span class="row-title">CinéMatch</span>
+          <span class="row-title" id="titre-cinematch">CinéMatch</span>
           <span class="row-tags">JavaScript · Algorithmique · Tests</span>
           <span class="row-year">2026</span>
           <span class="row-arrow" aria-hidden="true">↘</span>
         </button>
+        <div class="row-detail" id="detail-cinematch" role="region" aria-labelledby="titre-cinematch" inert>
+          <div class="row-detail-inner">
+            <dl class="case">
+              <div>
+                <dt>Contexte</dt>
+                <dd>Un projet de formation : une application de streaming fictive, fournie par mon formateur, recommandait les mêmes films à tout le monde.</dd>
+              </div>
+              <div>
+                <dt>Mon rôle</dt>
+                <dd>Concevoir le moteur de recommandation, sans bibliothèque d'intelligence artificielle : la fonction qui choisit les 5 films proposés à chaque utilisateur.</dd>
+              </div>
+              <div>
+                <dt>Le défi</dt>
+                <dd>Combiner plusieurs critères dans un seul score (genres préférés, goûts déduits des notes, utilisateurs similaires, qualité, popularité) tout en restant rapide, même avec 100 000 films.</dd>
+              </div>
+              <div>
+                <dt>Ce que j'ai appris</dt>
+                <dd>Écrire des tests automatisés, mesurer les performances d'un algorithme, et choisir les bonnes structures de données pour aller vite.</dd>
+              </div>
+            </dl>
+            <div class="case-links">
+              <a href="https://github.com/r-ovoundard/cinematch" target="_blank" rel="noopener" class="project-link">
+                Voir mon algorithme <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </article>
 
+      <!-- 03 · Tournoi des tris -->
       <article class="row" data-category="algo" data-reveal>
-        <button type="button" class="row-head" aria-expanded="false">
+        <button type="button" class="row-head" aria-expanded="false" aria-controls="detail-tris">
           <span class="row-num">03</span>
-          <span class="row-title">Tournoi des tris</span>
+          <span class="row-title" id="titre-tris">Tournoi des tris</span>
           <span class="row-tags">JavaScript · Performance</span>
           <span class="row-year">2026</span>
           <span class="row-arrow" aria-hidden="true">↘</span>
         </button>
+        <div class="row-detail" id="detail-tris" role="region" aria-labelledby="titre-tris" inert>
+          <div class="row-detail-inner">
+            <dl class="case">
+              <div>
+                <dt>Contexte</dt>
+                <dd>Un TP de formation, « Le grand tournoi des algorithmes de tri » : faire s'affronter plusieurs façons de trier les mêmes données.</dd>
+              </div>
+              <div>
+                <dt>Mon rôle</dt>
+                <dd>Programmer six algorithmes de tri en JavaScript, les lancer sur une même liste de 180 nombres et mesurer leurs temps de calcul.</dd>
+              </div>
+              <div>
+                <dt>Le défi</dt>
+                <dd>Comprendre pourquoi certains tris sont beaucoup plus rapides que d'autres, et mesurer de façon fiable des temps de calcul très courts.</dd>
+              </div>
+              <div>
+                <dt>Ce que j'ai appris</dt>
+                <dd>La notion de complexité d'un algorithme, et l'importance de choisir le bon algorithme selon la taille des données.</dd>
+              </div>
+            </dl>
+            <div class="case-links">
+              <a href="https://github.com/r-ovoundard" target="_blank" rel="noopener" class="project-link">
+                Voir mon GitHub <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </article>
 
+      <!-- 04 · Basket Club -->
       <article class="row" data-category="equipe" data-reveal>
-        <button type="button" class="row-head" aria-expanded="false">
+        <button type="button" class="row-head" aria-expanded="false" aria-controls="detail-basket">
           <span class="row-num">04</span>
-          <span class="row-title">Basket Club</span>
+          <span class="row-title" id="titre-basket">Basket Club</span>
           <span class="row-tags">HTML · CSS · Git · Travail en équipe</span>
           <span class="row-year">2026</span>
           <span class="row-arrow" aria-hidden="true">↘</span>
         </button>
+        <div class="row-detail" id="detail-basket" role="region" aria-labelledby="titre-basket" inert>
+          <div class="row-detail-inner">
+            <dl class="case">
+              <div>
+                <dt>Contexte</dt>
+                <dd>Un projet de formation réalisé en équipe : le site d'un club de basket, chaque membre de l'équipe étant responsable de ses propres pages.</dd>
+              </div>
+              <div>
+                <dt>Mon rôle</dt>
+                <dd>J'ai réalisé la page Contact du site, en respectant la charte graphique commune à toute l'équipe.</dd>
+              </div>
+              <div>
+                <dt>Le défi</dt>
+                <dd>Travailler à plusieurs sur un même dépôt Git, organisé en trois branches (main, dev, preprod), et comprendre comment naît un conflit quand deux personnes modifient la même partie d'une page.</dd>
+              </div>
+              <div>
+                <dt>Ce que j'ai appris</dt>
+                <dd>Le travail en équipe avec Git : pourquoi on développe sur une branche dédiée plutôt que sur main, et comment des modifications contradictoires créent un conflit à résoudre.</dd>
+              </div>
+            </dl>
+            <div class="case-links">
+              <a href="https://github.com/elsadadoun/O26A-clubsportif" target="_blank" rel="noopener" class="project-link">
+                Voir le dépôt de l'équipe <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </article>
 
     </section>
