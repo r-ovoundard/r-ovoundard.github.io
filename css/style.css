@@ -990,3 +990,345 @@ body::before {
   color: var(--ember);
   -webkit-text-stroke: 0;
 }
+/* =========================================================
+   EN-TÊTE DE SECTION (réutilisé sur tout le site)
+   ========================================================= */
+.section-head {
+  max-width: 720px;
+}
+
+.section-num {
+  margin-bottom: 14px;
+  color: var(--ember);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+/* Le mot en italique, avec le dégradé de braise */
+.section-title em {
+  padding-right: 0.06em;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 300;
+}
+
+.section-sub {
+  max-width: 520px;
+  margin-top: 18px;
+  color: var(--muted);
+}
+
+/* =========================================================
+   PROJETS – GRILLE
+   ========================================================= */
+.projects {
+  padding: 120px 0 60px;
+  scroll-margin-top: 40px; /* le menu fixe ne cache pas le titre */
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+
+.projects-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+/* =========================================================
+   PROJETS – CARTE
+   ========================================================= */
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: transform 0.6s var(--ease-out), box-shadow 0.6s var(--ease-out);
+}
+
+/* Bordure de braise : un dégradé dont on ne garde que le contour
+   (le "mask" découpe l'intérieur) */
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 1px;
+  border-radius: inherit;
+  background: var(--gradient);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px -20px rgba(255, 106, 43, 0.3);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+/* La grande carte : image à gauche, texte à droite */
+.project-featured {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  grid-column: 1 / -1;
+}
+
+/* --- Visuel --- */
+.project-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+
+.project-featured .project-media {
+  min-height: 340px;
+  aspect-ratio: auto;
+  border-right: 1px solid var(--line);
+  border-bottom: 0;
+}
+
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  transition: transform 1s var(--ease-out);
+}
+
+.project-card:hover .project-media img {
+  transform: scale(1.05);
+}
+
+/* --- Texte --- */
+.project-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px;
+}
+
+.project-featured .project-body {
+  justify-content: center;
+  padding: 40px;
+}
+
+.project-meta {
+  display: flex;
+  gap: 12px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.project-meta span {
+  color: var(--ember);
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.project-desc {
+  color: var(--muted);
+}
+
+.project-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.project-tags li {
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.project-links {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+/* Lien avec un soulignement qui se dessine */
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 2px;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  color: var(--amber);
+  font-weight: 600;
+  transition: background-size 0.5s var(--ease-out);
+}
+
+.project-link:hover {
+  background-size: 100% 1px;
+}
+
+.project-link span {
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.project-link:hover span {
+  transform: translate(3px, -3px);
+}
+
+/* =========================================================
+   PROJETS – VISUEL CINÉMATCH : affiches en éventail
+   ========================================================= */
+.media-cinematch {
+  background:
+    radial-gradient(circle at 50% 120%, rgba(255, 79, 109, 0.35), transparent 60%),
+    var(--bg-soft);
+}
+
+.posters span {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  width: 24%;
+  aspect-ratio: 2 / 3;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
+  transform: translateX(-50%) rotate(var(--r));
+  transform-origin: 50% 130%; /* elles pivotent depuis un point sous la carte */
+  transition: transform 0.7s var(--ease-spring);
+}
+
+/* Chaque "affiche" a ses couleurs */
+.posters span:nth-child(1) { background: linear-gradient(160deg, #ff4f6d, #3a1420); }
+.posters span:nth-child(2) { background: linear-gradient(160deg, #ffb35c, #4a2a10); }
+.posters span:nth-child(3) { background: linear-gradient(160deg, #7ee0a1, #123224); }
+.posters span:nth-child(4) { background: linear-gradient(160deg, #c98bff, #2a1638); }
+.posters span:nth-child(5) { background: linear-gradient(160deg, #ff6a2b, #2a1208); }
+
+/* Au survol, l'éventail s'ouvre plus largement */
+.project-card:hover .posters span {
+  transform: translateX(-50%) rotate(calc(var(--r) * 1.6));
+}
+
+.match-pill {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 2;
+  padding: 6px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(14, 12, 10, 0.7);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+/* =========================================================
+   PROJETS – VISUEL TRI : des barres qui se trient
+   ========================================================= */
+.media-sort {
+  display: flex;
+  align-items: flex-end;
+  padding: 56px 32px 0;
+  background:
+    linear-gradient(to top, rgba(255, 106, 43, 0.12), transparent 60%),
+    var(--bg-soft);
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+}
+
+.bars span {
+  flex: 1;
+  height: var(--h);
+  border-radius: 6px 6px 0 0;
+  background: linear-gradient(to top, var(--ember), var(--amber));
+  opacity: 0.85;
+  transition: height 0.8s var(--ease-spring);
+  transition-delay: calc(var(--i) * 45ms); /* de gauche à droite, l'une après l'autre */
+}
+
+/* Au survol : chaque barre prend sa hauteur "triée" */
+.project-card:hover .bars span {
+  height: var(--hs);
+}
+
+.sort-hint {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.sort-hint::before {
+  content: "// ";
+  color: var(--ember);
+}
+
+/* =========================================================
+   PROJETS – PETITS ÉCRANS
+   ========================================================= */
+@media (max-width: 860px) {
+  .project-grid,
+  .project-featured {
+    grid-template-columns: 1fr;
+  }
+
+  .project-featured .project-media {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .project-featured .project-body {
+    padding: 28px;
+  }
+}
+.project-desc strong {
+  color: var(--text);
+  font-weight: 600;
+}
