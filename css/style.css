@@ -1332,3 +1332,228 @@ body::before {
   color: var(--text);
   font-weight: 600;
 }
+/* =========================================================
+   RECHERCHE – SECTION
+   ========================================================= */
+.looking {
+  padding: 100px 0 120px;
+  scroll-margin-top: 40px;
+}
+
+.looking-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 56px;
+}
+
+/* =========================================================
+   RECHERCHE – TUILES
+   ========================================================= */
+/* Les rayures glissent d'exactement un motif : boucle parfaite.
+   22.63px = 16px × √2 (la largeur d'une rayure vue à l'horizontale) */
+@keyframes stripes {
+  to { background-position: 22.63px 0; }
+}
+
+.looking-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 230px;
+  padding: 28px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color 0.4s, transform 0.6s var(--ease-out);
+}
+
+/* Les rayures de braise, cachées jusqu'au survol */
+.looking-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(45deg, rgba(255, 106, 43, 0.08) 0 8px, transparent 8px 16px);
+  opacity: 0;
+  transition: opacity 0.5s;
+  animation: stripes 1s linear infinite;
+}
+
+.looking-item:hover {
+  border-color: rgba(255, 106, 43, 0.5);
+  transform: translateY(-4px);
+}
+
+.looking-item:hover::before {
+  opacity: 1;
+}
+
+/* Le texte reste au-dessus des rayures */
+.looking-item > * {
+  position: relative;
+}
+
+/* Le grand numéro évidé, en haut à droite */
+.looking-num {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-strong);
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-style: italic;
+  line-height: 1;
+  transition: transform 0.6s var(--ease-spring), -webkit-text-stroke-color 0.4s;
+}
+
+.looking-item:hover .looking-num {
+  -webkit-text-stroke-color: var(--ember);
+  transform: translateY(-6px);
+}
+
+.looking-label {
+  color: var(--ember);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.looking-value {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.looking-detail {
+  margin-top: auto; /* toujours collé en bas de la tuile */
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* =========================================================
+   RECHERCHE – "TRAVAILLONS ENSEMBLE"
+   ========================================================= */
+.cta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 64px;
+  padding: clamp(40px, 7vw, 80px);
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--surface);
+  transition: color 0.5s var(--ease-out), border-color 0.5s;
+}
+
+/* Le cercle de braise : caché (rayon 0), il grandit jusqu'à tout couvrir.
+   --cx et --cy : son point de départ (le centre, en attendant le JS) */
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gradient);
+  -webkit-clip-path: circle(0% at var(--cx, 50%) var(--cy, 50%));
+  clip-path: circle(0% at var(--cx, 50%) var(--cy, 50%));
+  transition: clip-path 0.9s var(--ease-out), -webkit-clip-path 0.9s var(--ease-out);
+}
+
+.cta:hover {
+  border-color: transparent;
+  color: var(--bg);
+}
+
+.cta:hover::before {
+  -webkit-clip-path: circle(150% at var(--cx, 50%) var(--cy, 50%));
+  clip-path: circle(150% at var(--cx, 50%) var(--cy, 50%));
+}
+
+.cta-kicker {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.5s;
+}
+
+.cta:hover .cta-kicker {
+  color: inherit;
+}
+
+.cta-title {
+  max-width: 80%;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 8vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.cta-title em {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 300;
+}
+
+/* Sur le fond de braise, le dégradé disparaîtrait : on passe en sombre */
+.cta:hover .cta-title em {
+  background: none;
+  color: var(--bg);
+}
+
+.cta-arrow {
+  position: absolute;
+  right: clamp(24px, 5vw, 64px);
+  bottom: clamp(24px, 5vw, 64px);
+  display: grid;
+  place-items: center;
+  width: clamp(56px, 8vw, 84px);
+  aspect-ratio: 1;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  transition: transform 0.6s var(--ease-spring), background 0.4s, color 0.4s, border-color 0.4s;
+}
+
+.cta:hover .cta-arrow {
+  border-color: transparent;
+  background: var(--bg);
+  color: var(--amber);
+  transform: rotate(-45deg) scale(1.1);
+}
+
+/* =========================================================
+   RECHERCHE – PETITS ÉCRANS
+   ========================================================= */
+@media (max-width: 960px) {
+  .looking-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .looking-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .looking-item {
+    min-height: 0;
+  }
+
+  .cta-title {
+    max-width: 100%;
+    padding-bottom: 80px; /* laisse la place à la flèche */
+  }
+}
