@@ -1,0 +1,173 @@
+/* =========================================================
+   VARIABLES – thème "Braise"
+   Toutes les couleurs et réglages du site sont ici.
+   ========================================================= */
+:root {
+  /* Fonds : un noir chaud, presque chocolat */
+  --bg:        #0e0c0a;
+  --bg-soft:   #16120f;
+  --surface:   #1c1713;
+  --surface-2: #241d18;
+
+  /* Lignes et bordures, en crème transparent */
+  --line:        rgba(243, 236, 226, 0.10);
+  --line-strong: rgba(243, 236, 226, 0.22);
+
+  /* Texte : crème plutôt que blanc pur, plus doux pour les yeux */
+  --text:  #f3ece2;
+  --muted: #a59b8f;
+
+  /* Accents : la braise */
+  --rose:  #ff4f6d;
+  --ember: #ff6a2b;
+  --amber: #ffb35c;
+  --gradient: linear-gradient(120deg, var(--rose), var(--ember) 45%, var(--amber));
+
+  /* Polices */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Manrope', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* Mouvements */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);    /* départ vif, arrivée très douce */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* léger rebond */
+
+  /* Mise en page */
+  --radius: 22px;
+  --max:    1200px;
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* défilement doux vers les sections */
+  scrollbar-color: var(--surface-2) var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  /* Deux lueurs de braise dans les coins */
+  background:
+    radial-gradient(60% 50% at 85% 0%, rgba(255, 106, 43, 0.14), transparent 70%),
+    radial-gradient(50% 40% at 0% 100%, rgba(255, 79, 109, 0.10), transparent 70%),
+    var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Texte sélectionné à la souris : couleur braise */
+::selection {
+  background: var(--ember);
+  color: var(--bg);
+}
+
+/* Contour visible au clavier (accessibilité) */
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+/* Barre de défilement (Chrome / Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid var(--bg);
+  border-radius: 999px;
+  background: var(--surface-2);
+}
+
+/* =========================================================
+   GRAIN DE PELLICULE
+   Un bruit généré en SVG, posé sur toute la page,
+   qui "saute" en continu comme un vieux film.
+   ========================================================= */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10%      { transform: translate(-5%, -10%); }
+  30%      { transform: translate(3%, -15%); }
+  50%      { transform: translate(12%, 9%); }
+  70%      { transform: translate(9%, 4%); }
+  90%      { transform: translate(-1%, 7%); }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 200;
+  pointer-events: none; /* ne bloque jamais les clics */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.07;
+  animation: grain 1s steps(6) infinite;
+}
+
+/* =========================================================
+   OUTILS
+   ========================================================= */
+/* Conteneur centré, avec 24px de marge de chaque côté */
+.container {
+  width: min(100% - 48px, var(--max));
+  margin-inline: auto;
+}
+
+/* Texte lu par les lecteurs d'écran, mais invisible à l'écran */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* =========================================================
+   ACCESSIBILITÉ : ANIMATIONS RÉDUITES
+   Si l'utilisateur a demandé moins d'animations dans son système
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
