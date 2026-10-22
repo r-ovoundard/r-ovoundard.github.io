@@ -1567,3 +1567,196 @@ body::before {
 .status-badge:hover {
   border-color: var(--amber);
 }
+/* =========================================================
+   PIED DE PAGE – STRUCTURE
+   ========================================================= */
+.site-footer {
+  position: relative;
+  padding-top: 90px;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  background: linear-gradient(to bottom, transparent, rgba(255, 106, 43, 0.06));
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 40px;
+  align-items: start;
+}
+
+.footer-lead {
+  margin-bottom: 18px;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.footer-lead em {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 300;
+}
+
+/* =========================================================
+   PIED DE PAGE – COLONNES DE LIENS
+   ========================================================= */
+.footer-col h3 {
+  margin-bottom: 16px;
+  color: var(--ember);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  transition: color 0.3s;
+}
+
+/* La petite flèche, cachée en bas à gauche, glisse à sa place au survol */
+.footer-col a::after {
+  content: "↗";
+  font-size: 0.85em;
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: opacity 0.3s, transform 0.4s var(--ease-spring);
+}
+
+.footer-col a:hover {
+  color: var(--text);
+}
+
+.footer-col a:hover::after {
+  opacity: 1;
+  transform: none;
+}
+
+/* =========================================================
+   PIED DE PAGE – BOUTON "HAUT DE PAGE"
+   ========================================================= */
+.to-top {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  font-size: 1.3rem;
+  transition: background 0.4s, color 0.4s, border-color 0.4s;
+}
+
+.to-top span {
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.to-top:hover {
+  border-color: transparent;
+  background: var(--ember);
+  color: var(--bg);
+}
+
+.to-top:hover span {
+  transform: translateY(-4px);
+}
+
+/* =========================================================
+   PIED DE PAGE – BAS
+   ========================================================= */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 64px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+/* =========================================================
+   PIED DE PAGE – LE NOM GÉANT
+   ========================================================= */
+.footer-giant {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  overflow: hidden;            /* les lettres sortent de là */
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 19vw, 17rem); /* remplit toute la largeur */
+  font-weight: 400;
+  line-height: 0.78;           /* coupé par le bas, comme une enseigne */
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Chaque lettre a sa "tranche" du dégradé : ensemble, elles forment
+   un seul dégradé continu sur tout le mot */
+.footer-giant span {
+  display: inline-block;
+  background: var(--gradient);
+  background-size: 900% 100%;
+  background-position: calc(var(--i) * 12.5%) 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* "translate" (et non "transform") : il s'ajoute à l'animation sans la gêner */
+  transition: translate 0.5s var(--ease-spring), filter 0.4s;
+}
+
+.footer-giant span:hover {
+  filter: brightness(1.25);
+  translate: 0 -8%;
+}
+
+/* Les lettres surgissent en suivant le défilement (view() = quand
+   l'élément entre à l'écran). Chaque lettre démarre un peu plus tard. */
+@keyframes letterRise {
+  from { transform: translateY(100%); }
+}
+
+@supports (animation-timeline: view()) {
+  .footer-giant span {
+    animation: letterRise linear both;
+    animation-timeline: view();
+    animation-range: entry calc(var(--i) * 4%) cover calc(25% + var(--i) * 4%);
+  }
+}
+
+/* =========================================================
+   PIED DE PAGE – PETITS ÉCRANS
+   ========================================================= */
+@media (max-width: 860px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-intro {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+}
