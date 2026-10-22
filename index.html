@@ -13,12 +13,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
-    <!-- defer : le script attend que la page soit construite avant de s'exécuter -->
+  <!-- defer : le script attend que la page soit construite avant de s'exécuter -->
   <script src="js/main.js" defer></script>
 </head>
 <body>
 
-    <!-- ===== NAVIGATION ===== -->
+  <!-- ===== NAVIGATION ===== -->
   <header class="site-nav">
     <div class="container nav-inner">
 
@@ -53,7 +53,7 @@
       <!-- Badge de disponibilité -->
       <a href="contact.html" class="status-badge">
         <span class="status-dot" aria-hidden="true"></span>
-    <span class="status-text">Alternance · rentrée 2027</span>
+        <span class="status-text">Alternance · rentrée 2027</span>
       </a>
 
     </div>
@@ -61,9 +61,10 @@
 
   <main>
 
-        <!-- ===== ACCUEIL ===== -->
+    <!-- ===== ACCUEIL ===== -->
     <section class="hero" id="accueil">
-              <!-- Décor : la sphère de braise et les étincelles (purement visuel) -->
+
+      <!-- Décor : la sphère de braise et les étincelles (purement visuel) -->
       <div class="hero-decor" aria-hidden="true">
         <div class="hero-orb"></div>
         <div class="sparks">
@@ -81,6 +82,7 @@
           <span style="--x: 96%; --s: 3px; --t: 9s;  --d: 9s"></span>
         </div>
       </div>
+
       <div class="container hero-inner">
 
         <p class="hero-kicker">
@@ -103,7 +105,7 @@
         <p class="hero-intro">
           Développeur <strong>full stack</strong> en formation, je conçois des applications web complètes :
           interfaces soignées, logique en <strong>JavaScript</strong>, API en <strong>PHP</strong>
-                    et bases de données <strong>MySQL</strong>. Je prépare dès maintenant ma recherche
+          et bases de données <strong>MySQL</strong>. Je prépare dès maintenant ma recherche
           d'<strong>alternance</strong> pour la <strong>rentrée 2027</strong>.
         </p>
 
@@ -124,8 +126,9 @@
           <li><span>Statut</span>En formation</li>
           <li><span>Recherche</span>Alternance 2027</li>
         </ul>
+
       </div>
-      
+
       <!-- Badge circulaire : le texte suit un cercle (textPath) et tourne -->
       <a href="#projets" class="scroll-badge" aria-label="Descendre vers les projets">
         <svg class="badge-ring" viewBox="0 0 120 120" aria-hidden="true">
@@ -140,7 +143,7 @@
       </a>
     </section>
 
-        <!-- ===== COMPÉTENCES ===== -->
+    <!-- ===== COMPÉTENCES ===== -->
     <section class="skills" id="competences" aria-labelledby="skills-title">
       <h2 class="sr-only" id="skills-title">Compétences et qualités</h2>
 
@@ -196,25 +199,77 @@
       </div>
     </section>
 
-       <!-- ===== PROJETS ===== -->
+    <!-- ===== CHIFFRES ===== -->
+    <section class="stats container" aria-label="Quelques chiffres">
+      <ul class="stats-grid" data-reveal-group>
+        <li class="stat" data-reveal>
+          <p class="stat-value"><span data-count="4">4</span></p>
+          <p class="stat-label">projets réalisés</p>
+        </li>
+        <li class="stat" data-reveal>
+          <p class="stat-value"><span data-count="9">9</span></p>
+          <p class="stat-label">pages dans MonBudget</p>
+        </li>
+        <li class="stat" data-reveal>
+          <p class="stat-value"><span data-count="13">13</span></p>
+          <p class="stat-label">tests écrits pour CinéMatch</p>
+        </li>
+        <li class="stat" data-reveal>
+          <p class="stat-value"><span data-count="6">6</span></p>
+          <p class="stat-label">algorithmes de tri comparés</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== PROJETS ===== -->
     <section class="projects container" id="projets" aria-labelledby="projects-title">
 
-      <header class="section-head">
+      <header class="section-head" data-reveal="mask">
         <p class="section-num">(01) — Projets</p>
         <h2 class="section-title" id="projects-title">Projets <em>sélectionnés</em></h2>
         <p class="section-sub">Des applications construites de A à Z, de la maquette jusqu'à la base de données.</p>
       </header>
 
-      <div class="project-grid">
+      <div class="project-grid" data-reveal-group>
 
         <!-- MonBudget : la grande carte -->
-         <article class="project-card project-featured" data-cursor="Voir"></article>
+        <article class="project-card project-featured" data-cursor="Voir" data-reveal="card">
           <div class="project-media">
             <img src="images/projets/monbudget.png"
                  alt="Tableau de bord de MonBudget : anneau du budget, dépenses du mois et dernières dépenses"
                  loading="lazy">
           </div>
-                   <div class="project-body">
+          <div class="project-body">
+            <p class="project-meta"><span>01</span>Application full stack · 2026</p>
+            <h3 class="project-title">MonBudget</h3>
+            <p class="project-desc">
+              Application de suivi de budget pour étudiants : comptes sécurisés, gestion des dépenses,
+              statistiques avec graphiques, profil et formulaire de contact.
+            </p>
+            <ul class="project-tags">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>MySQL</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/r-ovoundard/mon-budget" target="_blank" rel="noopener" class="project-link">
+                Voir le code <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CinéMatch : des affiches de films en éventail -->
+        <article class="project-card" data-cursor="Voir" data-reveal="card">
+          <div class="project-media media-cinematch" aria-hidden="true">
+            <p class="match-pill">Recommandé pour vous · 98 %</p>
+            <div class="posters">
+              <span style="--r: -24deg"></span>
+              <span style="--r: -12deg"></span>
+              <span style="--r: 12deg"></span>
+              <span style="--r: 24deg"></span>
+              <span style="--r: 0deg"></span>
+            </div>
+          </div>
+          <div class="project-body">
             <p class="project-meta"><span>02</span>Projet de formation · 2026</p>
             <h3 class="project-title">CinéMatch</h3>
             <p class="project-desc">
@@ -233,38 +288,8 @@
           </div>
         </article>
 
-        <!-- CinéMatch : des affiches de films en éventail -->
-        <article class="project-card" data-cursor="Voir"></article>
-          <div class="project-media media-cinematch" aria-hidden="true">
-            <p class="match-pill">Recommandé pour vous · 98 %</p>
-            <div class="posters">
-              <span style="--r: -24deg"></span>
-              <span style="--r: -12deg"></span>
-              <span style="--r: 12deg"></span>
-              <span style="--r: 24deg"></span>
-              <span style="--r: 0deg"></span>
-            </div>
-          </div>
-          <div class="project-body">
-            <p class="project-meta"><span>02</span>Algorithme · 2026</p>
-            <h3 class="project-title">CinéMatch</h3>
-            <p class="project-desc">
-              Moteur de recommandation de films : un score personnalisé selon les genres préférés,
-              les goûts et les utilisateurs similaires. Couvert par 35 tests automatisés.
-            </p>
-            <ul class="project-tags">
-              <li>JavaScript</li><li>Node.js</li><li>Tests</li>
-            </ul>
-            <div class="project-links">
-              <a href="https://github.com/r-ovoundard/fakeflix" target="_blank" rel="noopener" class="project-link">
-                Voir le code <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
-        </article>
-
         <!-- Tournoi des tris : des barres qui se trient au survol -->
-        <article class="project-card">
+        <article class="project-card" data-cursor="Voir" data-reveal="card">
           <div class="project-media media-sort" aria-hidden="true">
             <p class="sort-hint">survolez pour trier</p>
             <div class="bars">
@@ -303,7 +328,7 @@
 
       </div>
 
-      <div class="projects-more">
+      <div class="projects-more" data-reveal>
         <a href="projets.html" class="btn btn-ghost">
           <span>Tous mes projets</span>
           <span class="btn-icon" aria-hidden="true">↗</span>
@@ -311,38 +336,38 @@
       </div>
     </section>
 
-        <!-- ===== RECHERCHE ===== -->
+    <!-- ===== RECHERCHE ===== -->
     <section class="looking container" id="recherche" aria-labelledby="looking-title">
 
-      <header class="section-head">
+      <header class="section-head" data-reveal="mask">
         <p class="section-num">(02) — Recherche</p>
         <h2 class="section-title" id="looking-title">Ce que je <em>recherche</em></h2>
         <p class="section-sub">
-                Une alternance à partir de la rentrée 2027, pour mettre en pratique ce que j'apprends
+          Une alternance à partir de la rentrée 2027, pour mettre en pratique ce que j'apprends
           sur de vrais projets, aux côtés d'une équipe qui aime le travail bien fait.
         </p>
       </header>
 
-      <ul class="looking-grid">
-        <li class="looking-item">
+      <ul class="looking-grid" data-reveal-group>
+        <li class="looking-item" data-reveal>
           <span class="looking-num" aria-hidden="true">01</span>
           <span class="looking-label">Contrat</span>
           <p class="looking-value">Alternance</p>
           <p class="looking-detail">Contrat d'apprentissage ou de professionnalisation</p>
         </li>
-        <li class="looking-item">
+        <li class="looking-item" data-reveal>
           <span class="looking-num" aria-hidden="true">02</span>
           <span class="looking-label">Poste</span>
           <p class="looking-value">Développeur web</p>
           <p class="looking-detail">Front-end, back-end ou full stack : j'ai envie d'apprendre partout</p>
         </li>
-        <li class="looking-item">
+        <li class="looking-item" data-reveal>
           <span class="looking-num" aria-hidden="true">03</span>
           <span class="looking-label">Début</span>
           <p class="looking-value">Rentrée 2027</p>
           <p class="looking-detail">Rythme selon le calendrier de ma formation</p>
         </li>
-        <li class="looking-item">
+        <li class="looking-item" data-reveal>
           <span class="looking-num" aria-hidden="true">04</span>
           <span class="looking-label">Lieu</span>
           <p class="looking-value">Île-de-France</p>
@@ -351,7 +376,7 @@
       </ul>
 
       <!-- Appel au contact : tout le bloc est un lien -->
-     <a href="contact.html" class="cta" data-cursor="Écrire"></a>
+      <a href="contact.html" class="cta" data-cursor="Écrire" data-reveal>
         <span class="cta-kicker">Une opportunité ? Une question ?</span>
         <span class="cta-title">Travaillons <em>ensemble</em></span>
         <span class="cta-arrow" aria-hidden="true">→</span>
@@ -360,11 +385,12 @@
     </section>
 
   </main>
+
   <!-- ===== PIED DE PAGE ===== -->
   <footer class="site-footer">
     <div class="container">
 
-      <div class="footer-top">
+      <div class="footer-top" data-reveal>
         <div class="footer-intro">
           <p class="footer-lead">Un projet, une question,<br>ou juste envie d'<em>échanger</em> ?</p>
           <a href="contact.html" class="project-link">Écrivez-moi <span aria-hidden="true">↗</span></a>
@@ -384,7 +410,7 @@
           <h3>Ailleurs</h3>
           <ul>
             <li><a href="https://github.com/r-ovoundard" target="_blank" rel="noopener">GitHub</a></li>
-            <!-- Quand tu auras un LinkedIn, enlève les <!-- et --> de la ligne suivante :
+            <!-- Quand tu auras un LinkedIn, ajoute une ligne comme celle-ci :
             <li><a href="https://www.linkedin.com/in/TON-PROFIL" target="_blank" rel="noopener">LinkedIn</a></li>
             -->
           </ul>

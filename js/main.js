@@ -136,8 +136,93 @@ function initCtaOrigin() {
 }
 
 /* =========================================================
+   4. APPARITIONS AU DÉFILEMENT
+   IntersectionObserver prévient quand un élément entre à l'écran.
+   ========================================================= */
+function initReveal() {
+  const items = document.querySelectorAll('[data-reveal]');
+  // Rien à faire, navigateur trop ancien, ou animations réduites :
+  // tout reste simplement visible
+  if (!items.length || !('IntersectionObserver' in window) || reduceMotion) return;
+
+  // Dans un groupe, chaque élément attend un peu plus que le précédent
+  document.querySelectorAll('[data-reveal-group]').forEach((group) => {
+    group.querySelectorAll('[data-reveal]').forEach((item, index) => {
+      item.style.setProperty('--reveal-delay', `${index * 120}ms`);
+    });
+  });
+
+  // C'est seulement maintenant que le CSS cache les éléments :
+  // sans JS, cette classe n'existe pas, et tout est visible
+  document.documentElement.classList.add('reveal-ready');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      const item = entry.target;
+      item.classList.add('is-visible');
+      observer.unobserve(item); // une seule apparition par élément
+
+      // Une fois l'apparition finie, on retire le marquage : l'élément
+      // retrouve ses propres transitions (le survol des cartes, par exemple)
+      const delay = parseInt(item.style.getPropertyValue('--reveal-delay'), 10) || 0;
+      setTimeout(() => {
+        item.removeAttribute('data-reveal');
+        item.classList.remove('is-visible');
+      }, 1300 + delay);
+    });
+  }, {
+    threshold: 0.15,               // 15 % de l'élément doit être visible
+    rootMargin: '0px 0px -8% 0px', // un peu avant le bas de l'écran
+  });
+
+  items.forEach((item) => observer.observe(item));
+}
+
+/* =========================================================
+   5. CHIFFRES QUI DÉFILENT
+   ========================================================= */
+function countUp(element) {
+  const target = Number(element.dataset.count);
+  const duration = 1600;
+  const start = performance.now();
+
+  function frame(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    // Rapide au début, puis ralentit très fort à la fin
+    const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+    element.textContent = Math.round(target * eased);
+    if (progress < 1) requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+}
+
+function initCounters() {
+  const counters = document.querySelectorAll('[data-count]');
+  if (!counters.length || !('IntersectionObserver' in window) || reduceMotion) return;
+
+  counters.forEach((counter) => {
+    counter.textContent = '0';
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      countUp(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.6 });
+
+  counters.forEach((counter) => observer.observe(counter));
+}
+
+/* =========================================================
    DÉMARRAGE
    ========================================================= */
 initCursor();
 initMagnetic();
 initCtaOrigin();
+initReveal();
+initCounters();
