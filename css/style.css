@@ -2250,3 +2250,111 @@ body.menu-open {
   font-size: 0.7rem;
   opacity: 0.6;
 }
+/* =========================================================
+   PAGE PROJETS – LISTE
+   ========================================================= */
+.project-list {
+  padding-bottom: 120px;
+}
+
+.row {
+  border-top: 1px solid var(--line);
+  transition: opacity 0.4s;
+}
+
+.row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+/* Quand on survole UNE ligne, les AUTRES s'estompent */
+.project-list:has(.row-head:hover) .row:not(:hover) {
+  opacity: 0.35;
+}
+
+/* La ligne : une grille de 5 colonnes */
+.row-head {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 1fr auto 64px 40px;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 30px 8px;
+  overflow: hidden;
+  isolation: isolate;
+  border: none;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* La lueur de braise qui balaie la ligne */
+.row-head::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(255, 106, 43, 0.12), transparent 70%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.row-head:hover::before {
+  transform: scaleX(1);
+}
+
+.row-num,
+.row-tags,
+.row-year {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.row-num {
+  color: var(--ember);
+}
+
+.row-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  transition: transform 0.6s var(--ease-out), color 0.4s;
+}
+
+.row-head:hover .row-title {
+  color: var(--amber);
+  font-style: italic;
+  transform: translateX(16px);
+}
+
+.row-tags,
+.row-year {
+  color: var(--muted);
+}
+
+.row-year {
+  text-align: right;
+}
+
+/* La flèche dans son rond */
+.row-arrow {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  transition: transform 0.5s var(--ease-spring), background 0.4s, color 0.4s, border-color 0.4s;
+}
+
+.row-head:hover .row-arrow {
+  border-color: transparent;
+  background: var(--ember);
+  color: var(--bg);
+  transform: rotate(-90deg); /* ↘ devient ↗ */
+}
